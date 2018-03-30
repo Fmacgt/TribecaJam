@@ -25,6 +25,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public Text remainingDistance;
     public Text remainTimerText;
     public Text ResultText;
+    public Transform charTrans;
 
     //==============================================================================
 
@@ -59,6 +60,7 @@ public sealed class RunningCharacter : MonoBehaviour
         {
             _speed = Mathf.Clamp(_speed - slowRate * Time.deltaTime, minSpeed, maxSpeed);
             _distance += _speed * Time.deltaTime;
+            charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
             _remainingDistance = maxDistance - _distance;
             timer += Time.deltaTime;
             remainTime = timeLimit - timer;
@@ -135,13 +137,13 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Fail()
     {
         EndGame("You Fail");
-        reset();
+
     }
 
     public void Win()
     {
         EndGame("You Win");
-        reset();
+
     }
 
     public void RestartGame()
