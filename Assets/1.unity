@@ -691,6 +691,7 @@ MonoBehaviour:
   character: {fileID: 807926258}
   ResultsField: {fileID: 1863902092}
   targetText: {fileID: 359635948}
+  targetTextList: {fileID: 11400000, guid: 84b7c49efcbc146d69548e1b02595a37, type: 2}
 --- !u!4 &1646685151
 Transform:
   m_ObjectHideFlags: 0

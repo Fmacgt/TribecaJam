@@ -25,6 +25,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Text;
 
+using TribecaJam;
+
+
 public class ExampleStreaming : MonoBehaviour
 {
 	public RunningCharacter character;
@@ -53,18 +56,8 @@ public class ExampleStreaming : MonoBehaviour
 	private int _matchedCount = 0;
 	private string _recognizedString = "";
 
-	/**
-	private static readonly string[] TargetTextList = {
-		"She sells sea shells on the sea shore",
-		"A Proper Copper Coffee Pot",
-		"The butter Betty Botter bought was a bit bitter"
-	};
-	**/
-	private static readonly string[] TargetTextList = {
-		"Show me the money",
-		"Hello world",
-		"Good Morning"
-	};
+
+	public TargetTextList targetTextList;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,10 +74,8 @@ public class ExampleStreaming : MonoBehaviour
         _speechToText = new SpeechToText(credentials);
         Active = true;
 
-		_textPtr = Random.Range(0, TargetTextList.Length);
+		_textPtr = Random.Range(0, targetTextList.Count);
 		_pickNewText();
-
-//        StartRecording();
     }
 
 	private void Update()
@@ -216,31 +207,20 @@ public class ExampleStreaming : MonoBehaviour
         {
             foreach (var res in result.results)
             {
-//				float maxProb = 0f;
-//				int resultIdx = -1;
-//				int counter = 0;
                 foreach (var alt in res.alternatives)
-                {
-					/**
-                    string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n", 
-							alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
-                    Log.Debug("ExampleStreaming.OnRecognize()", text);
-                    ResultsField.text = text;
-					**/
-//					if (res.final) {
-						var words = alt.transcript.Split(
-								new string[] { " ", "-", "," }, 
-								10, System.StringSplitOptions.RemoveEmptyEntries);
-						foreach (var word in words) {
-							_wordBuffer.Add(word.ToLower());
-						}
+				{
+					var words = alt.transcript.Split(
+							new string[] { " ", "-", "," }, 
+							10, System.StringSplitOptions.RemoveEmptyEntries);
+					foreach (var word in words) {
+						_wordBuffer.Add(word.ToLower());
+					}
 
-						_debugPrintBuffer(_wordBuffer);
+					_debugPrintBuffer(_wordBuffer);
 
 
-						_tryToProcess();
-//					}
-                }
+					_tryToProcess();
+				}
             }
         }
     }
@@ -260,10 +240,10 @@ public class ExampleStreaming : MonoBehaviour
 
 	private void _pickNewText()
 	{
-		_textPtr = (_textPtr + Random.Range(1, TargetTextList.Length)) % TargetTextList.Length;
-		targetText.text = TargetTextList[_textPtr];
+		_textPtr = (_textPtr + Random.Range(1, targetTextList.Count)) % targetTextList.Count;
+		targetText.text = targetTextList[_textPtr];
 
-		var words = TargetTextList[_textPtr].Split(
+		var words = targetTextList[_textPtr].Split(
 				new string[] { " ", "," },
 				10, System.StringSplitOptions.RemoveEmptyEntries);
 		_targetBuffer.Clear();
