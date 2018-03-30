@@ -209,6 +209,11 @@ public class ExampleStreaming : MonoBehaviour
             {
                 foreach (var alt in res.alternatives)
 				{
+                    string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n", 
+                        alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
+                    Log.Debug("ExampleStreaming.OnRecognize()", text);
+                    ResultsField.text = text;
+
 					var words = alt.transcript.Split(
 							new string[] { " ", "-", "," }, 
 							10, System.StringSplitOptions.RemoveEmptyEntries);
