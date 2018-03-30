@@ -705,7 +705,7 @@ MonoBehaviour:
   slowRate: 1
   minSpeed: 5
   maxSpeed: 20
-  maxDistance: 0
+  maxDistance: 100
   timeLimit: 30
   InGameUIGroup:
   - {fileID: 1889699202}
@@ -809,8 +809,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -942, y: -76}
-  m_SizeDelta: {x: 164, y: 50}
+  m_AnchoredPosition: {x: -910.2, y: -76}
+  m_SizeDelta: {x: 227.7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &840758493
 GameObject:
@@ -1005,7 +1005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -120, y: -86}
+  m_AnchoredPosition: {x: -120, y: -76}
   m_SizeDelta: {x: 164, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1159842907
@@ -1462,8 +1462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -120, y: -35}
-  m_SizeDelta: {x: 164, y: 50}
+  m_AnchoredPosition: {x: -147.9, y: -76}
+  m_SizeDelta: {x: 219.7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889699204
 MonoBehaviour:

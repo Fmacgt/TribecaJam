@@ -107,11 +107,11 @@ public sealed class RunningCharacter : MonoBehaviour
 
     private void _updateDisplay()
     {
-        speedLabel.text = _speed.ToString();
-        distanceLabel.text = _distance.ToString();
+        speedLabel.text = string.Format("{0} m/s", System.Math.Round(_speed, 2).ToString());
+        //distanceLabel.text = string.Format("{0} m", _distance.ToString());
 
-        remainingDistance.text = _remainingDistance.ToString();
-        remainTimerText.text = remainTime.ToString();
+        remainingDistance.text = string.Format("{0} m remaining", System.Math.Round(_remainingDistance, 2).ToString());
+        remainTimerText.text = string.Format("{0} sec", System.Math.Round(remainTime, 2).ToString());
     }
 
     private void toggleDisplays(GameObject[] group, bool toggle)
