@@ -35,12 +35,14 @@ public sealed class RunningCharacter : MonoBehaviour
     private bool startGame = false;
     private float remainTime;
     private float timer = 0f;
+    private float targetSpeed = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////
 
     public void boost(float amount)
     {
-        _speed = Mathf.Clamp(_speed + amount, minSpeed, maxSpeed);
+        targetSpeed += amount;
+        //_speed = Mathf.Clamp(_speed + amount, minSpeed, maxSpeed);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////
@@ -52,13 +54,16 @@ public sealed class RunningCharacter : MonoBehaviour
         toggleDisplays(InGameUIGroup, false);
         toggleDisplays(EndGameUIGroup, false);
         toggleDisplays(StartScreenUIGroup, true);
+        targetSpeed = initSpeed;
     }
 
     private void Update()
     {
         if (startGame)
         {
+
             _speed = Mathf.Clamp(_speed - slowRate * Time.deltaTime, minSpeed, maxSpeed);
+            _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
             _distance += _speed * Time.deltaTime;
             charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
             _remainingDistance = maxDistance - _distance;
@@ -159,7 +164,7 @@ public sealed class RunningCharacter : MonoBehaviour
         _speed = initSpeed;
         _distance = 0f;
         _remainingDistance = maxDistance;
-
+        targetSpeed = 0f;
         remainTime = timeLimit;
     }
 }
