@@ -225,12 +225,15 @@ public sealed class RunningCharacter : MonoBehaviour
         _gameEnded = true;
 
         charAnim.Play("Win");
+		recordingScript.StopGame();
         LeanTween.delayedCall(0.5f, ()=>{
 		    winSplash.SetActive(true);
             scoreManager.FinalScore(timer);
-		if (SoundManager.instance) {
-			SoundManager.instance.PlayWin ();
-		}
+			EndGame("You Win");
+
+			if (SoundManager.instance) {
+				SoundManager.instance.PlayWin ();
+			}
         });
 		// ScoreManager.Instance.FinalScore(GetTimer());
     }
