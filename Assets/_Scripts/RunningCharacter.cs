@@ -222,6 +222,8 @@ public sealed class RunningCharacter : MonoBehaviour
     private void reset()
     {
         timer = 0f;
+        charAnim.SetFloat("gear", 0f);
+        charAnim.SetFloat("runSpeed", 1f);
         _speed = initSpeed;
         _distance = 0f;
         _remainingDistance = maxDistance;

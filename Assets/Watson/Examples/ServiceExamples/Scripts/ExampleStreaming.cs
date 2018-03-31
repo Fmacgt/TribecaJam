@@ -149,6 +149,7 @@ public class ExampleStreaming : MonoBehaviour
         _gameRunning = true;
         targetTexts[0].gameObject.SetActive(true);
         targetTexts[1].gameObject.SetActive(true);
+
         _pickNewText();
     }
 
@@ -157,6 +158,8 @@ public class ExampleStreaming : MonoBehaviour
         _gameRunning = false;
         targetTexts[0].gameObject.SetActive(false);
         targetTexts[1].gameObject.SetActive(false);
+        targetTexts[0].text = "";
+        targetTexts[1].text = "";
     }
 
     public bool Active
