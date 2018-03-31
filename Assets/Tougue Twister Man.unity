@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5328535, g: 0.316937, b: 0.9097965, a: 1}
+  m_IndirectSpecularColor: {r: 0.26086345, g: 0.26258242, b: 1.0239875, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -529,7 +529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -191.6}
+  m_AnchoredPosition: {x: 0, y: -90}
   m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450754849
@@ -1401,7 +1401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -191.6}
+  m_AnchoredPosition: {x: 0, y: -90}
   m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538847430
@@ -1623,7 +1623,7 @@ MonoBehaviour:
   ResultsField: {fileID: 1863902092}
   targetText: {fileID: 359635948}
   performanceDisplay: {fileID: 1265335388}
-  targetTextList: {fileID: 11400000, guid: 84b7c49efcbc146d69548e1b02595a37, type: 2}
+  targetTextList: {fileID: 11400000, guid: f2544b391772e45d0b9d1e0103db42fd, type: 2}
 --- !u!4 &1646685151
 Transform:
   m_ObjectHideFlags: 0
