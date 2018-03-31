@@ -42,6 +42,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private float _remainingDistance = 0f;
 	private bool _gameEnded = false;
     private bool startGame = false;
+    private bool starting = false;
     private float remainTime;
     private float timer = 0f;
     private float targetSpeed = 0;
@@ -111,6 +112,10 @@ public sealed class RunningCharacter : MonoBehaviour
 			if (!_gameEnded) {
 				_updateDisplay();
 			}
+        }else if(starting)
+        {
+            UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
+            charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
         }
     }
 
@@ -122,8 +127,9 @@ public sealed class RunningCharacter : MonoBehaviour
 
     public void StartGame()
     {
+        starting = true;
         StartCoroutine("GameStart");
-
+        charAnim.Play("Default Run");
         reset();
 
         toggleDisplays(EndGameUIGroup, false);
@@ -146,6 +152,7 @@ public sealed class RunningCharacter : MonoBehaviour
         yield return new WaitForSeconds(1f);
         countdownText.text = "";
         recordingScript.StartGame();
+        starting = false;
         startGame = true;
     }
 
@@ -195,7 +202,8 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         EndGame("You Fail");
 		_gameEnded = true;
-
+        _speed = 0;
+        charAnim.SetBool("exhausted", true);
     }
 
     public void Win()
@@ -221,6 +229,7 @@ public sealed class RunningCharacter : MonoBehaviour
 
     private void reset()
     {
+        charAnim.SetBool("exhausted", false);
         timer = 0f;
         charAnim.SetFloat("gear", 0f);
         charAnim.SetFloat("runSpeed", 1f);
@@ -232,5 +241,6 @@ public sealed class RunningCharacter : MonoBehaviour
         charTrans.position = _origPos;
         UFOTrans.position = _UFOOrigPos;
         trailScript.Reset();
+        _gameEnded = false;
     }
 }
