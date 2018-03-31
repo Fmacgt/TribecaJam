@@ -37,6 +37,8 @@ public class ExampleStreaming : MonoBehaviour
     public Text targetText;
     public Text performanceDisplay;
 
+
+    public float acceleration;
     public string username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
     public string password = "eZmE7JX3VapA";
 
@@ -317,11 +319,12 @@ public class ExampleStreaming : MonoBehaviour
         _debugPrintBuffer(_targetBuffer);
 
         _matchedCount = 0;
+        _matchDisplayPtr = 0;
     }
 
     private void _tryToProcess()
     {
-        if (_wordBuffer.Count == 0 && _missionCompleted)
+        if (_wordBuffer.Count == 0 || _missionCompleted || _matchedCount >= _targetBuffer.Count)
         {
             return;
         }
@@ -354,12 +357,21 @@ public class ExampleStreaming : MonoBehaviour
             _wordBuffer.RemoveRange(0, matchFrom);
 
 
-            character.boost(8f);
-            character.successFX();
+
 			
             if (!_missionCompleted && _matchedCount >= _targetBuffer.Count)
             {
 				_missionCompleted = true;
+
+                if(missionTimer > 0)
+                {
+                    character.boost(acceleration * Mathf.Min(thisMission.badTime / missionTimer, 4f));
+                }else
+                {
+                    character.boost(acceleration * 3);
+                }
+
+                character.successFX();
 
                 // a complete match
                 startMissionTimer = false;

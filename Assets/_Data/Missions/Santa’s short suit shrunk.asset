@@ -8,9 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba673d68b45f4f46a6c0c52d2d9d1ba, type: 3}
-  m_Name: Target Text List 1
+  m_Script: {fileID: 11500000, guid: 4be74cf8d8b8746ae8b895e79c79a87f, type: 3}
+  m_Name: "Santa\u2019s short suit shrunk"
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 11400000, guid: 23557979c4b5849e5b539b3f69ebaeea, type: 2}
-  - {fileID: 11400000, guid: b037592a2b0bc4c86af07d21957752d1, type: 2}
+  text: "Santa\u2019s short suit shrunk"
+  fastTime: 3
+  badTime: 8
+  animationTrigger: 
