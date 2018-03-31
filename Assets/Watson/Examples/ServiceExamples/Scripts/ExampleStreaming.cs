@@ -55,6 +55,7 @@ public class ExampleStreaming : MonoBehaviour
     private int _missionId = 0;
     private SpeechToText _speechToText;
     private Mission thisMission;
+    private bool _gameRunning = false;
 
 	//==============================================================================
 
@@ -90,19 +91,21 @@ public class ExampleStreaming : MonoBehaviour
 
         _speechToText = new SpeechToText(credentials);
         Active = true;
-
+        //StartRecording();
         _textPtr = Random.Range(0, targetTextList.Count);
     }
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.R) && _recording == null)
         {
-            StartRecording();
+            
+            StopRecording();
         }
         else if (Input.GetKeyUp(KeyCode.R) && _recording != null)
         {
-            StopRecording();
+            StartRecording();
         }
 
         if (startMissionTimer)
@@ -110,7 +113,7 @@ public class ExampleStreaming : MonoBehaviour
             missionTimer += Time.deltaTime;
         }
         //Debug.LogWarning(missionTimer);
-        if (thisMission)
+        if (thisMission && _gameRunning)
         {
             if (missionTimer > thisMission.badTime)
             {
@@ -137,7 +140,13 @@ public class ExampleStreaming : MonoBehaviour
 
     public void StartGame()
     {
+        _gameRunning = true;
         _pickNewText();
+    }
+
+    public void StopGame()
+    {
+        _gameRunning = false;
     }
 
     public bool Active
@@ -147,7 +156,8 @@ public class ExampleStreaming : MonoBehaviour
         {
             if (value && !_speechToText.IsListening)
             {
-                _speechToText.CustomizationId = "d2097a62-9d08-47ce-aebb-bae11b7f27da";
+                //_speechToText.CustomizationId = "d2097a62-9d08-47ce-aebb-bae11b7f27da";
+                _speechToText.CustomizationId = "f1ce3b76-d297-4193-9c19-eec1546d6d39";
                 _speechToText.CustomizationWeight = 1f;                
                 _speechToText.AcousticCustomizationId = "4508215a-48e2-4e1f-aa4b-670cdef446e0";
                 _speechToText.DetectSilence = true;
@@ -172,7 +182,7 @@ public class ExampleStreaming : MonoBehaviour
         }
     }
 
-    private void StartRecording()
+    public void StartRecording()
     {
         if (_recordingRoutine == 0)
         {
@@ -181,7 +191,7 @@ public class ExampleStreaming : MonoBehaviour
         }
     }
 
-    private void StopRecording()
+    public void StopRecording()
     {
         if (_recordingRoutine != 0)
         {
