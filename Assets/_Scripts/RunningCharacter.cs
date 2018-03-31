@@ -18,6 +18,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public GameObject[] InGameUIGroup;
     public GameObject[] StartScreenUIGroup;
     public GameObject[] EndGameUIGroup;
+	public GameObject winSplash;
     public ExampleStreaming recordingScript;
 
     public Text speedLabel;
@@ -104,6 +105,7 @@ public sealed class RunningCharacter : MonoBehaviour
             timer += Time.deltaTime;
             remainTime = timeLimit - timer;
 
+			Debug.LogFormat("[LOG] distance: {0}", _remainingDistance);
             if (_remainingDistance <= 0f)
             {
                 _remainingDistance = 0f;
@@ -221,12 +223,14 @@ public sealed class RunningCharacter : MonoBehaviour
         _gameEnded = true;
         scoreManager.FinalScore(timer);
 
-        // ScoreManager.Instance.FinalScore(GetTimer());
+		winSplash.SetActive(true);
+		// ScoreManager.Instance.FinalScore(GetTimer());
     }
 
     public void RestartGame()
     {
         hideDisplays();
+		winSplash.SetActive(false);
 
         StartGame();
     }
