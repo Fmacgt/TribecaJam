@@ -9,10 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8de2b0952230c49ad834df4be4fd3bb5, type: 3}
-  m_Name: Said
+  m_Name: Sit
   m_EditorClassIdentifier: 
-  word: said
+  word: sit
   soundLikes:
-  - said
-  - sad
-  - says
+  - sit
+  - seat
