@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.72351426, g: 0.66798633, b: 0.54275936, a: 1}
+  m_IndirectSpecularColor: {r: 0.7235597, g: 0.6679942, b: 0.54276335, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -637,10 +637,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 600, y: 480}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3736,7 +3736,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400084, guid: 7946eaf817ae94ceea9ba276e998c9cf, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 7946eaf817ae94ceea9ba276e998c9cf, type: 3}
       propertyPath: m_RootOrder
@@ -3748,7 +3748,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 7946eaf817ae94ceea9ba276e998c9cf, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 7946eaf817ae94ceea9ba276e998c9cf, type: 3}
       propertyPath: m_IsActive
@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 807926258}
-  targetTextList: {fileID: 11400000, guid: e35595ceffb8749c7aade55adcb4b229, type: 2}
+  targetTextList: {fileID: 11400000, guid: f2544b391772e45d0b9d1e0103db42fd, type: 2}
   ResultsField: {fileID: 1863902092}
   targetTexts:
   - {fileID: 359635948}
