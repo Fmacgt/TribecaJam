@@ -32,7 +32,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public Transform UFOTrans;
     public ParticleSystem successParticle;
 
-	public ScoreManager scoreManager;
+    public ScoreManager scoreManager;
     public Animator charAnim;
     public TrailCtrl trailScript;
     //==============================================================================
@@ -40,7 +40,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private float _speed = 0f;
     private float _distance = 0f;
     private float _remainingDistance = 0f;
-	private bool _gameEnded = false;
+    private bool _gameEnded = false;
     private bool startGame = false;
     private bool starting = false;
     private float remainTime;
@@ -63,6 +63,7 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         successParticle.Play();
     }
+
     /////////////////////////////////////////////////////////////////////////////////////
 
     private void Start()
@@ -87,14 +88,18 @@ public sealed class RunningCharacter : MonoBehaviour
             charAnim.SetFloat("gear", _speed / 40f);
 
             _distance += _speed * Time.deltaTime;
-            UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
 
-            if(UFOTrans.position.x > maxDistance)
+            if (UFOTrans.position.x < maxDistance + 40f)
             {
-                UFOTrans.position = new Vector3(maxDistance, UFOTrans.position.y, UFOTrans.position.z);
+                UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
+            }
+            if (UFOTrans.position.x > maxDistance + 40f)
+            {
+                UFOTrans.position = new Vector3(maxDistance + 40f, UFOTrans.position.y, UFOTrans.position.z);
             }
 
             charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
+
             _remainingDistance = maxDistance - _distance;
             timer += Time.deltaTime;
             remainTime = timeLimit - timer;
@@ -102,6 +107,7 @@ public sealed class RunningCharacter : MonoBehaviour
             if (_remainingDistance <= 0f)
             {
                 _remainingDistance = 0f;
+
                 Win();
             }
 
@@ -109,10 +115,12 @@ public sealed class RunningCharacter : MonoBehaviour
             {
                 Fail();
             }
-			if (!_gameEnded) {
-				_updateDisplay();
-			}
-        }else if(starting)
+            if (!_gameEnded)
+            {
+                _updateDisplay();
+            }
+        }
+        else if (starting)
         {
             UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
             charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
@@ -201,7 +209,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Fail()
     {
         EndGame("You Fail");
-		_gameEnded = true;
+        _gameEnded = true;
         _speed = 0;
         charAnim.SetBool("exhausted", true);
     }
@@ -209,11 +217,11 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Win()
     {
         EndGame("You Win");
-		// Get Score
-		_gameEnded = true;
-		scoreManager.FinalScore(timer);
+        // Get Score
+        _gameEnded = true;
+        scoreManager.FinalScore(timer);
 
-		// ScoreManager.Instance.FinalScore(GetTimer());
+        // ScoreManager.Instance.FinalScore(GetTimer());
     }
 
     public void RestartGame()
@@ -223,9 +231,10 @@ public sealed class RunningCharacter : MonoBehaviour
         StartGame();
     }
 
-	public float GetTimer() {
-		return timer;
-	}
+    public float GetTimer()
+    {
+        return timer;
+    }
 
     private void reset()
     {
