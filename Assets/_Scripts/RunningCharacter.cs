@@ -105,7 +105,6 @@ public sealed class RunningCharacter : MonoBehaviour
             timer += Time.deltaTime;
             remainTime = timeLimit - timer;
 
-			Debug.LogFormat("[LOG] distance: {0}", _remainingDistance);
             if (_remainingDistance <= 0f)
             {
                 _remainingDistance = 0f;
