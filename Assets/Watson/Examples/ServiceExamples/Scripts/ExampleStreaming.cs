@@ -30,14 +30,15 @@ using TribecaJam;
 
 public class ExampleStreaming : MonoBehaviour
 {
-	public RunningCharacter character;
+    public RunningCharacter character;
 
     private string _username = "81596c14-0a17-49e8-b350-818a8a441cd2";
     private string _password = "3crXBQxhFQNW";
     private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
-    
+
     public Text ResultsField;
-	public Text targetText;
+    public Text targetText;
+    public Text performanceDisplay;
 
     private int _recordingRoutine = 0;
     private string _microphoneID = null;
@@ -46,27 +47,31 @@ public class ExampleStreaming : MonoBehaviour
     private int _recordingHZ = 22050;
 
     private SpeechToText _speechToText;
+    private Mission thisMission;
 
-	/////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////
 
-	private int _textPtr = 0;
+    private int _textPtr = 0;
 
-	private List<string> _targetBuffer;
-	private List<string> _wordBuffer;
-	private int _matchedCount = 0;
-	private string _recognizedString = "";
+    private List<string> _targetBuffer;
+    private List<string> _wordBuffer;
+    private int _matchedCount = 0;
+    private string _recognizedString = "";
+    private float missionTimer = 0f;
+    private bool startMissionTimer = false;
 
 
-	public TargetTextList targetTextList;
+    public TargetTextList targetTextList;
 
-	/////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////
 
 
     void Start()
     {
-		_targetBuffer = new List<string>(16);
-		_wordBuffer = new List<string>(32);
+        _targetBuffer = new List<string>(16);
+        _wordBuffer = new List<string>(32);
         LogSystem.InstallDefaultReactors();
+        performanceDisplay.text = "";
 
         //  Create credential and instantiate service
         Credentials credentials = new Credentials(_username, _password, _url);
@@ -74,18 +79,41 @@ public class ExampleStreaming : MonoBehaviour
         _speechToText = new SpeechToText(credentials);
         Active = true;
 
-		_textPtr = Random.Range(0, targetTextList.Count);
-		_pickNewText();
+        _textPtr = Random.Range(0, targetTextList.Count);
+        //_pickNewText();
     }
 
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.R) && _recording == null) {
-			StartRecording();
-		} else if (Input.GetKeyUp(KeyCode.R) && _recording != null) {
-			StopRecording();
-		}
-	}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && _recording == null)
+        {
+            StartRecording();
+        }
+        else if (Input.GetKeyUp(KeyCode.R) && _recording != null)
+        {
+            StopRecording();
+        }
+
+        if (startMissionTimer)
+        {
+            missionTimer += Time.deltaTime;
+        }
+        //Debug.LogWarning(missionTimer);
+        if (thisMission)
+        {
+            if (missionTimer > thisMission.badTime)
+            {
+                missionTimer = 0;
+                startMissionTimer = false;
+                _pickNewText();
+            }
+        }
+    }
+
+    public void StartGame()
+    {
+        _pickNewText();
+    }
 
     public bool Active
     {
@@ -132,7 +160,7 @@ public class ExampleStreaming : MonoBehaviour
             Runnable.Stop(_recordingRoutine);
             _recordingRoutine = 0;
 
-			_recording = null;
+            _recording = null;
         }
     }
 
@@ -178,7 +206,7 @@ public class ExampleStreaming : MonoBehaviour
                 _recording.GetData(samples, bFirstBlock ? 0 : midPoint);
 
                 AudioData record = new AudioData();
-				record.MaxLevel = Mathf.Max(Mathf.Abs(Mathf.Min(samples)), Mathf.Max(samples));
+                record.MaxLevel = Mathf.Max(Mathf.Abs(Mathf.Min(samples)), Mathf.Max(samples));
                 record.Clip = AudioClip.Create("Recording", midPoint, _recording.channels, _recordingHZ, false);
                 record.Clip.SetData(samples, 0);
 
@@ -208,24 +236,25 @@ public class ExampleStreaming : MonoBehaviour
             foreach (var res in result.results)
             {
                 foreach (var alt in res.alternatives)
-				{
-                    string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n", 
+                {
+                    string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n",
                         alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
                     Log.Debug("ExampleStreaming.OnRecognize()", text);
                     ResultsField.text = text;
 
-					var words = alt.transcript.Split(
-							new string[] { " ", "-", "," }, 
-							10, System.StringSplitOptions.RemoveEmptyEntries);
-					foreach (var word in words) {
-						_wordBuffer.Add(word.ToLower());
-					}
+                    var words = alt.transcript.Split(
+                            new string[] { " ", "-", "," },
+                            10, System.StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var word in words)
+                    {
+                        _wordBuffer.Add(word.ToLower());
+                    }
 
-					_debugPrintBuffer(_wordBuffer);
+                    _debugPrintBuffer(_wordBuffer);
 
 
-					_tryToProcess();
-				}
+                    _tryToProcess();
+                }
             }
         }
     }
@@ -241,93 +270,141 @@ public class ExampleStreaming : MonoBehaviour
         }
     }
 
-	/////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////
 
-	private void _pickNewText()
-	{
-		_textPtr = (_textPtr + Random.Range(1, targetTextList.Count)) % targetTextList.Count;
-		targetText.text = targetTextList[_textPtr];
-
-		var words = targetTextList[_textPtr].Split(
-				new string[] { " ", "," },
-				10, System.StringSplitOptions.RemoveEmptyEntries);
-		_targetBuffer.Clear();
-		foreach (var word in words) {
-			_targetBuffer.Add(word.ToLower());
-		}
-		_debugPrintBuffer(_targetBuffer);
-
-		_matchedCount = 0;
-	}
-
-	private void _tryToProcess()
-	{
-		if (_wordBuffer.Count == 0) {
-			return;
-		}
-
-		// iterate _wordBuffer, to look for the first word in _targetBuffer
-		int startIdx = 0;
-		while (startIdx < _wordBuffer.Count && 
-				string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) != 0) {
-			startIdx++;
-		}
-
-		if (startIdx < _wordBuffer.Count &&
-				string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) == 0) {
-			// found a matching pair, start comparing remaining words
-			int matchFrom = startIdx + 1;
-			int matchTo = _matchedCount + 1;
-			_matchedCount++;
-			while (matchFrom < _wordBuffer.Count && matchTo < _targetBuffer.Count &&
-					string.Compare(_wordBuffer[matchFrom], _targetBuffer[matchTo]) == 0) {
-				matchFrom++;
-				matchTo++;
-
-				_matchedCount++;
-			}
-
-			// end of matching, check remaining words
-			if (_matchedCount > 0) {
-				var builder = new StringBuilder();
-				builder.Append("<color='red'>");
-				for (int i = 0; i < _matchedCount; i++) {
-					builder.Append(_targetBuffer[i]);
-					builder.Append(" ");
-				}
-				builder.Append("</color>");
-
-				for (int i = _matchedCount; i < _targetBuffer.Count; i++) {
-					builder.Append(_targetBuffer[i]);
-					builder.Append(" ");
-				}
-
-				targetText.text = builder.ToString();
-			}
-
-			_wordBuffer.RemoveRange(0, matchFrom);
+    private void _pickNewText()
+    {
+        _textPtr = (_textPtr + Random.Range(1, targetTextList.Count)) % targetTextList.Count;
+        thisMission = targetTextList[_textPtr];
+        targetText.text = targetTextList[_textPtr].text;
+        missionTimer = 0f;
+        startMissionTimer = true;
+        performanceDisplay.text = "";
 
 
-			if (_matchedCount >= _targetBuffer.Count) {
-				// a complete match
-				_pickNewText();
+        var words = targetTextList[_textPtr].text.Split(
+                new string[] { " ", "," },
+                10, System.StringSplitOptions.RemoveEmptyEntries);
+        _targetBuffer.Clear();
+        foreach (var word in words)
+        {
+            _targetBuffer.Add(word.ToLower());
+        }
+        _debugPrintBuffer(_targetBuffer);
 
-				character.boost(8f);
-			}
-		} else {
-			_wordBuffer.RemoveRange(0, Mathf.Min(startIdx, _wordBuffer.Count));
-		}
-	}
+        _matchedCount = 0;
+    }
+
+    private void _tryToProcess()
+    {
+        if (_wordBuffer.Count == 0)
+        {
+            return;
+        }
+
+        // iterate _wordBuffer, to look for the first word in _targetBuffer
+        int startIdx = 0;
+        while (startIdx < _wordBuffer.Count &&
+                string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) != 0)
+        {
+            startIdx++;
+        }
+
+        if (startIdx < _wordBuffer.Count &&
+                string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) == 0)
+        {
+            // found a matching pair, start comparing remaining words
+            int matchFrom = startIdx + 1;
+            int matchTo = _matchedCount + 1;
+            _matchedCount++;
+            while (matchFrom < _wordBuffer.Count && matchTo < _targetBuffer.Count &&
+                    string.Compare(_wordBuffer[matchFrom], _targetBuffer[matchTo]) == 0)
+            {
+                matchFrom++;
+                matchTo++;
+
+                _matchedCount++;
+            }
+
+            // end of matching, check remaining words
+            if (_matchedCount > 0)
+            {
+                var builder = new StringBuilder();
+                builder.Append("<color='red'>");
+                for (int i = 0; i < _matchedCount; i++)
+                {
+                    builder.Append(_targetBuffer[i]);
+                    builder.Append(" ");
+                }
+                builder.Append("</color>");
+
+                for (int i = _matchedCount; i < _targetBuffer.Count; i++)
+                {
+                    builder.Append(_targetBuffer[i]);
+                    builder.Append(" ");
+                }
+
+                targetText.text = builder.ToString();
+            }
+
+            _wordBuffer.RemoveRange(0, matchFrom);
 
 
-	private void _debugPrintBuffer(List<string> buffer)
-	{
-		var builder = new StringBuilder();
-		foreach (var word in buffer) {
-			builder.Append(word);
-			builder.Append(", ");
-		}
+            if (_matchedCount >= _targetBuffer.Count)
+            {
 
-		Debug.Log(builder.ToString());
-	}
+                // a complete match
+
+                generateRank(missionTimer);
+                startMissionTimer = false;
+                missionTimer = 0f;
+                _pickNewText();
+
+
+            }
+
+
+        }
+        else
+        {
+            _wordBuffer.RemoveRange(0, Mathf.Min(startIdx, _wordBuffer.Count));
+        }
+    }
+
+    private void generateRank(float missionTimer)
+    {
+        var thisMission = targetTextList[_textPtr];
+        if (missionTimer > thisMission.fastTime)
+        {
+            //TODO: give a OK rank visual effect
+            performanceDisplay.text = "OK";
+            character.boost(8f);
+        }
+        else if (missionTimer < thisMission.fastTime)
+        {
+            character.boost(15f);
+            performanceDisplay.text = "Perfect";
+            Debug.Log("Perfect");
+            //TODO: give a FAST rank visual effect
+        }
+
+        if (thisMission.animationTrigger != null)
+        {
+            //TODO: animator.setTrigger(thisMission.animationTrigger);
+        }
+
+    }
+
+
+    private void _debugPrintBuffer(List<string> buffer)
+    {
+        var builder = new StringBuilder();
+        foreach (var word in buffer)
+        {
+            builder.Append(word);
+            builder.Append(", ");
+        }
+
+        Debug.Log(builder.ToString());
+    }
 }
