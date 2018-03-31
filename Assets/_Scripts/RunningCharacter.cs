@@ -29,10 +29,12 @@ public sealed class RunningCharacter : MonoBehaviour
     public Text countdownText;
 
     public Transform charTrans;
+    public Transform UFOTrans;
     public ParticleSystem successParticle;
 
 	public ScoreManager scoreManager;
     public Animator charAnim;
+    public TrailCtrl trailScript;
     //==============================================================================
 
     private float _speed = 0f;
@@ -44,6 +46,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private float timer = 0f;
     private float targetSpeed = 0;
     private Vector3 _origPos;
+    private Vector3 _UFOOrigPos;
 
     /////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +67,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private void Start()
     {
         _origPos = charTrans.position;
+        _UFOOrigPos = UFOTrans.position;
         hideDisplays();
         //_updateDisplay();
         toggleDisplays(InGameUIGroup, false);
@@ -80,6 +84,11 @@ public sealed class RunningCharacter : MonoBehaviour
             //_speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
             charAnim.SetFloat("runSpeed", _speed / 5f * 1.2f);
             _distance += _speed * Time.deltaTime;
+            UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
+            if(UFOTrans.position.x > maxDistance)
+            {
+                UFOTrans.position = new Vector3(maxDistance, UFOTrans.position.y, UFOTrans.position.z);
+            }
             charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
             _remainingDistance = maxDistance - _distance;
             timer += Time.deltaTime;
@@ -215,5 +224,7 @@ public sealed class RunningCharacter : MonoBehaviour
         targetSpeed = 0f;
         remainTime = timeLimit;
         charTrans.position = _origPos;
+        UFOTrans.position = _UFOOrigPos;
+        trailScript.Reset();
     }
 }
