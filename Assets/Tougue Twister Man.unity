@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.7235597, g: 0.6679942, b: 0.54276335, a: 1}
+  m_IndirectSpecularColor: {r: 0.72351426, g: 0.66798633, b: 0.54275936, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3018,7 +3018,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1247399797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 264, y: 2.8311443, z: -12.94}
+  m_LocalPosition: {x: 186, y: 2.8311443, z: -12.94}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3843,7 +3843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2dcb620e48b9466f9e257b5bff11928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  control: {fileID: 1646685150}
+  control: {fileID: 807926258}
   ufoTr: {fileID: 57600134}
   camTr: {fileID: 1391086066}
   initUfoTr: {fileID: 617739591}
@@ -4173,6 +4173,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1538847433}
         m_MethodName: Play
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1538847428}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4712,7 +4723,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 350399027
+  randomSeed: 1971335046
   InitialModule:
     serializedVersion: 3
     enabled: 1

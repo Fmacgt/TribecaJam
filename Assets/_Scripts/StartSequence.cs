@@ -8,7 +8,7 @@ namespace Tribeca
 {
 	public sealed class StartSequence : MonoBehaviour
 	{
-		public ExampleStreaming control;
+		public RunningCharacter control;
 
 
 		public Transform ufoTr;
