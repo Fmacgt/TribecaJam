@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Name: Target Text List Test
   m_EditorClassIdentifier: 
   list:
+<<<<<<< develop:Assets/_Data/Target Text List Test.asset
   - {fileID: 11400000, guid: 2a61f4066f87143fa9b539877ae6fabe, type: 2}
+=======
+  - Hello
+>>>>>>> scene layout tweak:Assets/_Data/Target Text List.asset

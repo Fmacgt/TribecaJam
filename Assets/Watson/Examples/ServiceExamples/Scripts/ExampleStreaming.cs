@@ -32,8 +32,8 @@ public class ExampleStreaming : MonoBehaviour
 {
     public RunningCharacter character;
 
-    private string _username = "81596c14-0a17-49e8-b350-818a8a441cd2";
-    private string _password = "3crXBQxhFQNW";
+    private string _username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
+    private string _password = "eZmE7JX3VapA";
     private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
 
     public Text ResultsField;
@@ -135,6 +135,8 @@ public class ExampleStreaming : MonoBehaviour
                 _speechToText.SpeakerLabels = false;
                 _speechToText.WordAlternativesThreshold = null;
                 _speechToText.StartListening(OnRecognize, OnRecognizeSpeaker);
+                //_speechToText.CustomizationId = "ff7bbd0e-ad60-43a8-a6b9-cfe2d26967af";
+                //_speechToText.CustomizationWeight = 1f;
             }
             else if (!value && _speechToText.IsListening)
             {
@@ -350,8 +352,13 @@ public class ExampleStreaming : MonoBehaviour
             _wordBuffer.RemoveRange(0, matchFrom);
 
 
-            if (_matchedCount >= _targetBuffer.Count)
-            {
+				character.boost(8f);
+                character.successFX();
+			}
+		} else {
+			_wordBuffer.RemoveRange(0, Mathf.Min(startIdx, _wordBuffer.Count));
+		}
+	}
 
                 // a complete match
 
