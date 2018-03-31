@@ -38,6 +38,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private float _speed = 0f;
     private float _distance = 0f;
     private float _remainingDistance = 0f;
+	private bool _gameEnded = false;
     private bool startGame = false;
     private float remainTime;
     private float timer = 0f;
@@ -92,8 +93,9 @@ public sealed class RunningCharacter : MonoBehaviour
             {
                 Fail();
             }
-            _updateDisplay();
-
+			if (!_gameEnded) {
+				_updateDisplay();
+			}
         }
     }
 
@@ -177,16 +179,18 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Fail()
     {
         EndGame("You Fail");
+		_gameEnded = true;
 
     }
 
     public void Win()
     {
         EndGame("You Win");
-
-		// Get Score 
+		// Get Score
+		_gameEnded = true;
 		scoreManager.FinalScore(timer);
-//		ScoreManager.Instance.FinalScore(GetTimer());
+
+		// ScoreManager.Instance.FinalScore(GetTimer());
     }
 
     public void RestartGame()
