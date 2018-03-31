@@ -32,7 +32,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public ParticleSystem successParticle;
 
 	public ScoreManager scoreManager;
-
+    public Animator charAnim;
     //==============================================================================
 
     private float _speed = 0f;
@@ -50,7 +50,8 @@ public sealed class RunningCharacter : MonoBehaviour
     public void boost(float amount)
     {
 //        targetSpeed += amount;
-        targetSpeed = Mathf.Clamp(targetSpeed + amount, minSpeed, maxSpeed);
+        //targetSpeed = Mathf.Clamp(targetSpeed + amount, minSpeed, maxSpeed);
+        _speed += amount;
     }
 
 
@@ -76,7 +77,8 @@ public sealed class RunningCharacter : MonoBehaviour
         if (startGame)
         {
             _speed = Mathf.Clamp(_speed - slowRate * Time.deltaTime, minSpeed, maxSpeed);
-            _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
+            //_speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
+            charAnim.SetFloat("runSpeed", _speed / 5f * 1.2f);
             _distance += _speed * Time.deltaTime;
             charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
             _remainingDistance = maxDistance - _distance;

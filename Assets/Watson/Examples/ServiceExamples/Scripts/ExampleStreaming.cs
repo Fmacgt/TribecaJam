@@ -108,6 +108,12 @@ public class ExampleStreaming : MonoBehaviour
             StartRecording();
         }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            character.boost(acceleration * 3);
+
+        }
+
         if (startMissionTimer)
         {
             missionTimer += Time.deltaTime;
