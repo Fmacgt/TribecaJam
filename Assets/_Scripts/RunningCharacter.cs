@@ -154,7 +154,8 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Win()
     {
         EndGame("You Win");
-
+		// Get Score 
+		ScoreManager.Instance.FinalScore(GetTimer());
     }
 
     public void RestartGame()
@@ -163,6 +164,10 @@ public sealed class RunningCharacter : MonoBehaviour
 
         StartGame();
     }
+
+	public float GetTimer() {
+		return timer;
+	}
 
     private void reset()
     {
