@@ -446,6 +446,9 @@ public class ExampleStreaming : MonoBehaviour
         {
             //TODO: give a OK rank visual effect
             performanceDisplay.text = "OK";
+			if (SoundManager.instance) {
+				SoundManager.instance.PlaySuccess ();
+			}
             character.boost(8f);
         }
         else if (missionTimer < thisMission.fastTime)
@@ -454,6 +457,10 @@ public class ExampleStreaming : MonoBehaviour
             performanceDisplay.text = "Perfect";
             Debug.Log("Perfect");
             //TODO: give a FAST rank visual effect
+			if (SoundManager.instance) {
+				SoundManager.instance.PlaySuccess ();
+				SoundManager.instance.PlayZoom ();
+			}
         }
 
         if (thisMission.animationTrigger != null)

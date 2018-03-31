@@ -211,7 +211,10 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Fail()
     {
         EndGame("You Fail");
-        _gameEnded = true;
+		_gameEnded = true;
+		if (SoundManager.instance) {
+			SoundManager.instance.PlayLose ();
+		}
         _speed = 0;
         charAnim.SetBool("exhausted", true);
     }
@@ -219,10 +222,12 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Win()
     {
         EndGame("You Win");
-        // Get Score
-        _gameEnded = true;
-        scoreManager.FinalScore(timer);
-
+		// Get Score
+		_gameEnded = true;
+		scoreManager.FinalScore(timer);
+		if (SoundManager.instance) {
+			SoundManager.instance.PlayWin ();
+		}
 		winSplash.SetActive(true);
 		// ScoreManager.Instance.FinalScore(GetTimer());
     }
