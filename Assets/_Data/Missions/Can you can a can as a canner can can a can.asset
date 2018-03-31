@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be74cf8d8b8746ae8b895e79c79a87f, type: 3}
   m_Name: Can you can a can as a canner can can a can
   m_EditorClassIdentifier: 
-  text: Can you can a can as a canner can can a can?
+  text: Can you can a can as a canner can can a can
   fastTime: 3
   badTime: 8
   animationTrigger: 

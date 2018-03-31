@@ -34,9 +34,9 @@ public class ExampleStreaming : MonoBehaviour
     public TargetTextList targetTextList;
 
     public Text ResultsField;
-    public Text targetText;
+    public Text[] targetTexts;
     public Text performanceDisplay;
-
+    public Animator missionAnim;
 
     public float acceleration;
     public string username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
@@ -52,8 +52,10 @@ public class ExampleStreaming : MonoBehaviour
     private int _recordingBufferSize = 1;
     private int _recordingHZ = 22050;
 
+    private int _missionId = 0;
     private SpeechToText _speechToText;
     private Mission thisMission;
+    private bool _gameRunning = false;
 
 	//==============================================================================
 
@@ -89,19 +91,21 @@ public class ExampleStreaming : MonoBehaviour
 
         _speechToText = new SpeechToText(credentials);
         Active = true;
-
+        //StartRecording();
         _textPtr = Random.Range(0, targetTextList.Count);
     }
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.R) && _recording == null)
         {
-            StartRecording();
+            
+            StopRecording();
         }
         else if (Input.GetKeyUp(KeyCode.R) && _recording != null)
         {
-            StopRecording();
+            StartRecording();
         }
 
         if (startMissionTimer)
@@ -109,7 +113,7 @@ public class ExampleStreaming : MonoBehaviour
             missionTimer += Time.deltaTime;
         }
         //Debug.LogWarning(missionTimer);
-        if (thisMission)
+        if (thisMission && _gameRunning)
         {
             if (missionTimer > thisMission.badTime)
             {
@@ -136,7 +140,13 @@ public class ExampleStreaming : MonoBehaviour
 
     public void StartGame()
     {
+        _gameRunning = true;
         _pickNewText();
+    }
+
+    public void StopGame()
+    {
+        _gameRunning = false;
     }
 
     public bool Active
@@ -146,6 +156,10 @@ public class ExampleStreaming : MonoBehaviour
         {
             if (value && !_speechToText.IsListening)
             {
+                //_speechToText.CustomizationId = "d2097a62-9d08-47ce-aebb-bae11b7f27da";
+                _speechToText.CustomizationId = "f1ce3b76-d297-4193-9c19-eec1546d6d39";
+                _speechToText.CustomizationWeight = 1f;                
+                _speechToText.AcousticCustomizationId = "4508215a-48e2-4e1f-aa4b-670cdef446e0";
                 _speechToText.DetectSilence = true;
                 _speechToText.EnableWordConfidence = true;
                 _speechToText.EnableTimestamps = true;
@@ -159,8 +173,7 @@ public class ExampleStreaming : MonoBehaviour
                 _speechToText.SpeakerLabels = false;
                 _speechToText.WordAlternativesThreshold = null;
                 _speechToText.StartListening(OnRecognize, OnRecognizeSpeaker);
-                //_speechToText.CustomizationId = "ff7bbd0e-ad60-43a8-a6b9-cfe2d26967af";
-                //_speechToText.CustomizationWeight = 1f;
+
             }
             else if (!value && _speechToText.IsListening)
             {
@@ -169,7 +182,7 @@ public class ExampleStreaming : MonoBehaviour
         }
     }
 
-    private void StartRecording()
+    public void StartRecording()
     {
         if (_recordingRoutine == 0)
         {
@@ -178,7 +191,7 @@ public class ExampleStreaming : MonoBehaviour
         }
     }
 
-    private void StopRecording()
+    public void StopRecording()
     {
         if (_recordingRoutine != 0)
         {
@@ -302,7 +315,12 @@ public class ExampleStreaming : MonoBehaviour
     {
         _textPtr = (_textPtr + Random.Range(1, targetTextList.Count)) % targetTextList.Count;
         thisMission = targetTextList[_textPtr];
-        targetText.text = targetTextList[_textPtr].text;
+
+        _missionId ++;
+        _missionId = _missionId % targetTexts.Length;
+
+        targetTexts[_missionId].text = targetTextList[_textPtr].text;
+        missionAnim.Play("SwitchTwister" + _missionId.ToString());
         missionTimer = 0f;
         startMissionTimer = true;
         performanceDisplay.text = "";
@@ -405,7 +423,7 @@ public class ExampleStreaming : MonoBehaviour
 			_builder.Append(" ");
 		}
 
-		targetText.text = _builder.ToString();
+        targetTexts[_missionId].text = _builder.ToString();
 	}
 
     private void generateRank(float missionTimer)

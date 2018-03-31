@@ -18,13 +18,16 @@ public sealed class RunningCharacter : MonoBehaviour
     public GameObject[] InGameUIGroup;
     public GameObject[] StartScreenUIGroup;
     public GameObject[] EndGameUIGroup;
-
+    public ExampleStreaming recordingScript;
 
     public Text speedLabel;
     public Text distanceLabel;
     public Text remainingDistance;
     public Text remainTimerText;
     public Text ResultText;
+
+    public Text countdownText;
+
     public Transform charTrans;
     public ParticleSystem successParticle;
 
@@ -39,6 +42,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private float remainTime;
     private float timer = 0f;
     private float targetSpeed = 0;
+    private Vector3 _origPos;
 
     /////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +61,7 @@ public sealed class RunningCharacter : MonoBehaviour
 
     private void Start()
     {
+        _origPos = charTrans.position;
         hideDisplays();
         //_updateDisplay();
         toggleDisplays(InGameUIGroup, false);
@@ -92,29 +97,52 @@ public sealed class RunningCharacter : MonoBehaviour
         }
     }
 
+    public float GetSpeed()
+    {
+
+        return _speed;
+    }
+
     public void StartGame()
     {
-        startGame = true;
+        StartCoroutine("GameStart");
+
         reset();
 
         toggleDisplays(EndGameUIGroup, false);
         toggleDisplays(StartScreenUIGroup, false);
         toggleDisplays(InGameUIGroup, true);
         _updateDisplay();
+        recordingScript.StartRecording();
 
+    }
 
+    IEnumerator GameStart()
+    {
+        countdownText.text = "3";
+        yield return new WaitForSeconds(1f);
+        countdownText.text = "2";
+        yield return new WaitForSeconds(1f);
+        countdownText.text = "1";
+        yield return new WaitForSeconds(1f);
+        countdownText.text = "GO";
+        yield return new WaitForSeconds(1f);
+        countdownText.text = "";
+        recordingScript.StartGame();
+        startGame = true;
     }
 
     public void EndGame(string result)
     {
         startGame = false;
-
+        recordingScript.StopGame();
         ResultText.text = result;
 
         toggleDisplays(InGameUIGroup, false);
 
         toggleDisplays(StartScreenUIGroup, false);
         toggleDisplays(EndGameUIGroup, true);
+        recordingScript.StopRecording();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////
@@ -180,5 +208,6 @@ public sealed class RunningCharacter : MonoBehaviour
         _remainingDistance = maxDistance;
         targetSpeed = 0f;
         remainTime = timeLimit;
+        charTrans.position = _origPos;
     }
 }
