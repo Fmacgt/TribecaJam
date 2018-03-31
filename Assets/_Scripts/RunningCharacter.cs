@@ -81,7 +81,7 @@ public sealed class RunningCharacter : MonoBehaviour
 
     private void Update()
     {
-        if (startGame)
+        if (startGame && _remainingDistance > 0f)
         {
             _speed = Mathf.Clamp(_speed - slowRate * Time.deltaTime, minSpeed, maxSpeed);
             //_speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
@@ -221,14 +221,20 @@ public sealed class RunningCharacter : MonoBehaviour
 
     public void Win()
     {
-        EndGame("You Win");
-		// Get Score
-		_gameEnded = true;
-		scoreManager.FinalScore(timer);
-		if (SoundManager.instance) {
-			SoundManager.instance.PlayWin ();
-		}
-		winSplash.SetActive(true);
+        // Get Score
+        _gameEnded = true;
+
+        charAnim.Play("Win");
+		recordingScript.StopGame();
+        LeanTween.delayedCall(0.5f, ()=>{
+		    winSplash.SetActive(true);
+            scoreManager.FinalScore(timer);
+			EndGame("You Win");
+
+			if (SoundManager.instance) {
+				SoundManager.instance.PlayWin ();
+			}
+        });
 		// ScoreManager.Instance.FinalScore(GetTimer());
     }
 
@@ -248,6 +254,7 @@ public sealed class RunningCharacter : MonoBehaviour
     private void reset()
     {
         charAnim.SetBool("exhausted", false);
+        charAnim.SetBool("win", false);
         timer = 0f;
         charAnim.SetFloat("gear", 0f);
         charAnim.SetFloat("runSpeed", 1f);
