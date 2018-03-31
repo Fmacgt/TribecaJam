@@ -108,6 +108,12 @@ public class ExampleStreaming : MonoBehaviour
             StartRecording();
         }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            character.boost(acceleration * 3);
+
+        }
+
         if (startMissionTimer)
         {
             missionTimer += Time.deltaTime;
@@ -381,12 +387,12 @@ public class ExampleStreaming : MonoBehaviour
             {
 				_missionCompleted = true;
 
-                if(missionTimer > 0)
+                if(missionTimer > 0 && missionTimer > thisMission.fastTime)
                 {
-                    character.boost(acceleration * Mathf.Min(thisMission.badTime / missionTimer, 4f));
+                    character.boost(acceleration * (thisMission.badTime / missionTimer));
                 }else
                 {
-                    character.boost(acceleration * 3);
+                    character.boost(acceleration * 2.5f);
                 }
 
                 character.successFX();

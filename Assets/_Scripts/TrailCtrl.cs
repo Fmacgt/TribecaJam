@@ -36,4 +36,12 @@ public class TrailCtrl : MonoBehaviour
             }
         }
     }
+
+    public void Reset()
+    {
+        for (int i = 0; i < trailObjs.Length; i++)
+        {
+            trailObjs[i].SetActive(false);
+        }
+    }
 }
