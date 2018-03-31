@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: Target Text List 1
   m_EditorClassIdentifier: 
   list:
-  - {fileID: 11400000, guid: 2a61f4066f87143fa9b539877ae6fabe, type: 2}
+  - {fileID: 11400000, guid: 8fbb4cec577b740b88eee8859efc5d87, type: 2}

@@ -31,14 +31,18 @@ using TribecaJam;
 public class ExampleStreaming : MonoBehaviour
 {
     public RunningCharacter character;
-
-    private string _username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
-    private string _password = "eZmE7JX3VapA";
-    private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
+    public TargetTextList targetTextList;
 
     public Text ResultsField;
     public Text targetText;
     public Text performanceDisplay;
+
+    public string username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
+    public string password = "eZmE7JX3VapA";
+
+	//==============================================================================
+
+    private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
 
     private int _recordingRoutine = 0;
     private string _microphoneID = null;
@@ -49,38 +53,42 @@ public class ExampleStreaming : MonoBehaviour
     private SpeechToText _speechToText;
     private Mission thisMission;
 
-    /////////////////////////////////////////////////////////////////////////////////////
+	//==============================================================================
 
+	private StringBuilder _builder;
     private int _textPtr = 0;
 
     private List<string> _targetBuffer;
     private List<string> _wordBuffer;
     private int _matchedCount = 0;
-    private string _recognizedString = "";
+	private int _matchDisplayPtr = 0;
+	private bool _missionCompleted = false;
+
     private float missionTimer = 0f;
     private bool startMissionTimer = false;
 
-
-    public TargetTextList targetTextList;
-
     /////////////////////////////////////////////////////////////////////////////////////
 
+	private void Awake()
+	{
+        _targetBuffer = new List<string>(16);
+        _wordBuffer = new List<string>(32);
+
+		_builder = new StringBuilder();
+	}
 
     void Start()
     {
-        _targetBuffer = new List<string>(16);
-        _wordBuffer = new List<string>(32);
         LogSystem.InstallDefaultReactors();
         performanceDisplay.text = "";
 
         //  Create credential and instantiate service
-        Credentials credentials = new Credentials(_username, _password, _url);
+        Credentials credentials = new Credentials(username, password, _url);
 
         _speechToText = new SpeechToText(credentials);
         Active = true;
 
         _textPtr = Random.Range(0, targetTextList.Count);
-        //_pickNewText();
     }
 
     private void Update()
@@ -108,6 +116,20 @@ public class ExampleStreaming : MonoBehaviour
                 _pickNewText();
             }
         }
+
+
+		if (_matchDisplayPtr < _matchedCount) {
+			_highlightMatchedWords();
+
+			if (_missionCompleted && _matchDisplayPtr == _matchedCount) {
+				_missionCompleted = false;
+
+                generateRank(missionTimer);
+
+				// wait and pick the next word
+				LeanTween.delayedCall(gameObject, 0.5f, _pickNewText);
+			}
+		}
     }
 
     public void StartGame()
@@ -299,7 +321,7 @@ public class ExampleStreaming : MonoBehaviour
 
     private void _tryToProcess()
     {
-        if (_wordBuffer.Count == 0)
+        if (_wordBuffer.Count == 0 && _missionCompleted)
         {
             return;
         }
@@ -329,52 +351,50 @@ public class ExampleStreaming : MonoBehaviour
             }
 
             // end of matching, check remaining words
-            if (_matchedCount > 0)
-            {
-                var builder = new StringBuilder();
-                builder.Append("<color='red'>");
-                for (int i = 0; i < _matchedCount; i++)
-                {
-                    builder.Append(_targetBuffer[i]);
-                    builder.Append(" ");
-                }
-                builder.Append("</color>");
-
-                for (int i = _matchedCount; i < _targetBuffer.Count; i++)
-                {
-                    builder.Append(_targetBuffer[i]);
-                    builder.Append(" ");
-                }
-
-                targetText.text = builder.ToString();
-            }
-
             _wordBuffer.RemoveRange(0, matchFrom);
 
 
             character.boost(8f);
             character.successFX();
 			
-            if (_matchedCount >= _targetBuffer.Count)
+            if (!_missionCompleted && _matchedCount >= _targetBuffer.Count)
             {
+				_missionCompleted = true;
 
                 // a complete match
-
-                generateRank(missionTimer);
                 startMissionTimer = false;
                 missionTimer = 0f;
-                _pickNewText();
-
-
             }
-
-
         }
         else
         {
             _wordBuffer.RemoveRange(0, Mathf.Min(startIdx, _wordBuffer.Count));
         }
     }
+
+	private void _highlightMatchedWords()
+	{
+		_matchDisplayPtr++;
+
+
+		_builder.Length = 0;
+
+		_builder.Append("<color='red'>");
+		for (int i = 0; i < _matchDisplayPtr; i++)
+		{
+			_builder.Append(_targetBuffer[i]);
+			_builder.Append(" ");
+		}
+		_builder.Append("</color>");
+
+		for (int i = _matchDisplayPtr; i < _targetBuffer.Count; i++)
+		{
+			_builder.Append(_targetBuffer[i]);
+			_builder.Append(" ");
+		}
+
+		targetText.text = _builder.ToString();
+	}
 
     private void generateRank(float missionTimer)
     {
@@ -403,13 +423,13 @@ public class ExampleStreaming : MonoBehaviour
 
     private void _debugPrintBuffer(List<string> buffer)
     {
-        var builder = new StringBuilder();
+		_builder.Length = 0;
         foreach (var word in buffer)
         {
-            builder.Append(word);
-            builder.Append(", ");
+            _builder.Append(word);
+            _builder.Append(", ");
         }
 
-        Debug.Log(builder.ToString());
+        Debug.Log(_builder.ToString());
     }
 }
