@@ -26,6 +26,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public Text remainTimerText;
     public Text ResultText;
     public Transform charTrans;
+    public ParticleSystem successParticle;
 
     //==============================================================================
 
@@ -45,6 +46,11 @@ public sealed class RunningCharacter : MonoBehaviour
         //_speed = Mathf.Clamp(_speed + amount, minSpeed, maxSpeed);
     }
 
+
+    public void successFX()
+    {
+        successParticle.Play();
+    }
     /////////////////////////////////////////////////////////////////////////////////////
 
     private void Start()

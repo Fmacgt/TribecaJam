@@ -32,8 +32,8 @@ public class ExampleStreaming : MonoBehaviour
 {
     public RunningCharacter character;
 
-    private string _username = "81596c14-0a17-49e8-b350-818a8a441cd2";
-    private string _password = "3crXBQxhFQNW";
+    private string _username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
+    private string _password = "eZmE7JX3VapA";
     private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
 
     public Text ResultsField;
@@ -135,6 +135,8 @@ public class ExampleStreaming : MonoBehaviour
                 _speechToText.SpeakerLabels = false;
                 _speechToText.WordAlternativesThreshold = null;
                 _speechToText.StartListening(OnRecognize, OnRecognizeSpeaker);
+                //_speechToText.CustomizationId = "ff7bbd0e-ad60-43a8-a6b9-cfe2d26967af";
+                //_speechToText.CustomizationWeight = 1f;
             }
             else if (!value && _speechToText.IsListening)
             {
@@ -199,7 +201,7 @@ public class ExampleStreaming : MonoBehaviour
             }
 
             if ((bFirstBlock && writePos >= midPoint)
-              || (!bFirstBlock && writePos < midPoint))
+                || (!bFirstBlock && writePos < midPoint))
             {
                 // front block is recorded, make a RecordClip and pass it onto our callback.
                 samples = new float[midPoint];
@@ -238,13 +240,13 @@ public class ExampleStreaming : MonoBehaviour
                 foreach (var alt in res.alternatives)
                 {
                     string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n",
-                        alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
+                                      alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
                     Log.Debug("ExampleStreaming.OnRecognize()", text);
                     ResultsField.text = text;
 
                     var words = alt.transcript.Split(
-                            new string[] { " ", "-", "," },
-                            10, System.StringSplitOptions.RemoveEmptyEntries);
+                                    new string[] { " ", "-", "," },
+                                    10, System.StringSplitOptions.RemoveEmptyEntries);
                     foreach (var word in words)
                     {
                         _wordBuffer.Add(word.ToLower());
@@ -283,8 +285,8 @@ public class ExampleStreaming : MonoBehaviour
 
 
         var words = targetTextList[_textPtr].text.Split(
-                new string[] { " ", "," },
-                10, System.StringSplitOptions.RemoveEmptyEntries);
+                        new string[] { " ", "," },
+                        10, System.StringSplitOptions.RemoveEmptyEntries);
         _targetBuffer.Clear();
         foreach (var word in words)
         {
@@ -305,20 +307,20 @@ public class ExampleStreaming : MonoBehaviour
         // iterate _wordBuffer, to look for the first word in _targetBuffer
         int startIdx = 0;
         while (startIdx < _wordBuffer.Count &&
-                string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) != 0)
+               string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) != 0)
         {
             startIdx++;
         }
 
         if (startIdx < _wordBuffer.Count &&
-                string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) == 0)
+            string.Compare(_wordBuffer[startIdx], _targetBuffer[_matchedCount]) == 0)
         {
             // found a matching pair, start comparing remaining words
             int matchFrom = startIdx + 1;
             int matchTo = _matchedCount + 1;
             _matchedCount++;
             while (matchFrom < _wordBuffer.Count && matchTo < _targetBuffer.Count &&
-                    string.Compare(_wordBuffer[matchFrom], _targetBuffer[matchTo]) == 0)
+                   string.Compare(_wordBuffer[matchFrom], _targetBuffer[matchTo]) == 0)
             {
                 matchFrom++;
                 matchTo++;
@@ -350,6 +352,9 @@ public class ExampleStreaming : MonoBehaviour
             _wordBuffer.RemoveRange(0, matchFrom);
 
 
+            character.boost(8f);
+            character.successFX();
+			
             if (_matchedCount >= _targetBuffer.Count)
             {
 

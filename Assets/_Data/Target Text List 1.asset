@@ -12,14 +12,4 @@ MonoBehaviour:
   m_Name: Target Text List 1
   m_EditorClassIdentifier: 
   list:
-  - Four fine fresh fish
-  - Which witch is which?
-  - Stupid superstition
-  - I see he sees high seas she sees
-  - Burger burglar
-  - She said she should sit
-  - She sees cheese
-  - Silly sheep weep and sleep
-  - Mummies make money
-  - loyal royal lawyer
-  - Real rear wheel
+  - {fileID: 11400000, guid: 2a61f4066f87143fa9b539877ae6fabe, type: 2}
