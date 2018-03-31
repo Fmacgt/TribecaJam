@@ -98,12 +98,15 @@ public class ExampleStreaming : MonoBehaviour
         {
             missionTimer += Time.deltaTime;
         }
-        Debug.LogWarning(missionTimer);
-        if (missionTimer > thisMission.badTime)
+        //Debug.LogWarning(missionTimer);
+        if (thisMission)
         {
-            missionTimer = 0;
-            startMissionTimer = false;
-            _pickNewText();
+            if (missionTimer > thisMission.badTime)
+            {
+                missionTimer = 0;
+                startMissionTimer = false;
+                _pickNewText();
+            }
         }
     }
 
