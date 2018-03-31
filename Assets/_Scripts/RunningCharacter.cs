@@ -92,6 +92,12 @@ public sealed class RunningCharacter : MonoBehaviour
         }
     }
 
+    public float GetSpeed()
+    {
+
+        return _speed;
+    }
+
     public void StartGame()
     {
         startGame = true;

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be74cf8d8b8746ae8b895e79c79a87f, type: 3}
   m_Name: Which witch is which
   m_EditorClassIdentifier: 
-  text: Which witch is which?
+  text: Which witch is which
   fastTime: 3
   badTime: 8
   animationTrigger: 
