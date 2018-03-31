@@ -147,12 +147,16 @@ public class ExampleStreaming : MonoBehaviour
     public void StartGame()
     {
         _gameRunning = true;
+        targetTexts[0].gameObject.SetActive(true);
+        targetTexts[1].gameObject.SetActive(true);
         _pickNewText();
     }
 
     public void StopGame()
     {
         _gameRunning = false;
+        targetTexts[0].gameObject.SetActive(false);
+        targetTexts[1].gameObject.SetActive(false);
     }
 
     public bool Active
