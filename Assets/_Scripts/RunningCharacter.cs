@@ -42,8 +42,8 @@ public sealed class RunningCharacter : MonoBehaviour
 
     public void boost(float amount)
     {
-        targetSpeed += amount;
-        //_speed = Mathf.Clamp(_speed + amount, minSpeed, maxSpeed);
+//        targetSpeed += amount;
+        targetSpeed = Mathf.Clamp(targetSpeed + amount, minSpeed, maxSpeed);
     }
 
 
@@ -67,7 +67,6 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         if (startGame)
         {
-
             _speed = Mathf.Clamp(_speed - slowRate * Time.deltaTime, minSpeed, maxSpeed);
             _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
             _distance += _speed * Time.deltaTime;

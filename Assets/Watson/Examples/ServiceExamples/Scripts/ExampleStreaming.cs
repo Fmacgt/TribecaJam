@@ -31,14 +31,18 @@ using TribecaJam;
 public class ExampleStreaming : MonoBehaviour
 {
     public RunningCharacter character;
-
-    private string _username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
-    private string _password = "eZmE7JX3VapA";
-    private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
+    public TargetTextList targetTextList;
 
     public Text ResultsField;
     public Text targetText;
     public Text performanceDisplay;
+
+    public string username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
+    public string password = "eZmE7JX3VapA";
+
+	//==============================================================================
+
+    private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
 
     private int _recordingRoutine = 0;
     private string _microphoneID = null;
@@ -49,8 +53,9 @@ public class ExampleStreaming : MonoBehaviour
     private SpeechToText _speechToText;
     private Mission thisMission;
 
-    /////////////////////////////////////////////////////////////////////////////////////
+	//==============================================================================
 
+	private StringBuilder _builder;
     private int _textPtr = 0;
 
     private List<string> _targetBuffer;
@@ -60,11 +65,7 @@ public class ExampleStreaming : MonoBehaviour
     private float missionTimer = 0f;
     private bool startMissionTimer = false;
 
-
-    public TargetTextList targetTextList;
-
     /////////////////////////////////////////////////////////////////////////////////////
-
 
     void Start()
     {
@@ -74,13 +75,12 @@ public class ExampleStreaming : MonoBehaviour
         performanceDisplay.text = "";
 
         //  Create credential and instantiate service
-        Credentials credentials = new Credentials(_username, _password, _url);
+        Credentials credentials = new Credentials(username, password, _url);
 
         _speechToText = new SpeechToText(credentials);
         Active = true;
 
         _textPtr = Random.Range(0, targetTextList.Count);
-        //_pickNewText();
     }
 
     private void Update()
@@ -331,22 +331,23 @@ public class ExampleStreaming : MonoBehaviour
             // end of matching, check remaining words
             if (_matchedCount > 0)
             {
-                var builder = new StringBuilder();
-                builder.Append("<color='red'>");
+                _builder.Length = 0;
+
+                _builder.Append("<color='red'>");
                 for (int i = 0; i < _matchedCount; i++)
                 {
-                    builder.Append(_targetBuffer[i]);
-                    builder.Append(" ");
+                    _builder.Append(_targetBuffer[i]);
+                    _builder.Append(" ");
                 }
-                builder.Append("</color>");
+                _builder.Append("</color>");
 
                 for (int i = _matchedCount; i < _targetBuffer.Count; i++)
                 {
-                    builder.Append(_targetBuffer[i]);
-                    builder.Append(" ");
+                    _builder.Append(_targetBuffer[i]);
+                    _builder.Append(" ");
                 }
 
-                targetText.text = builder.ToString();
+                targetText.text = _builder.ToString();
             }
 
             _wordBuffer.RemoveRange(0, matchFrom);
@@ -403,13 +404,13 @@ public class ExampleStreaming : MonoBehaviour
 
     private void _debugPrintBuffer(List<string> buffer)
     {
-        var builder = new StringBuilder();
+		_builder.Length = 0;
         foreach (var word in buffer)
         {
-            builder.Append(word);
-            builder.Append(", ");
+            _builder.Append(word);
+            _builder.Append(", ");
         }
 
-        Debug.Log(builder.ToString());
+        Debug.Log(_builder.ToString());
     }
 }
