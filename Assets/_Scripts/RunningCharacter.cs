@@ -191,7 +191,9 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         EndGame("You Fail");
 		_gameEnded = true;
-
+		if (SoundManager.instance) {
+			SoundManager.instance.PlayLose ();
+		}
     }
 
     public void Win()
@@ -200,6 +202,9 @@ public sealed class RunningCharacter : MonoBehaviour
 		// Get Score
 		_gameEnded = true;
 		scoreManager.FinalScore(timer);
+		if (SoundManager.instance) {
+			SoundManager.instance.PlayWin ();
+		}
 
 		// ScoreManager.Instance.FinalScore(GetTimer());
     }

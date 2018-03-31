@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//PlayerPrefs.DeleteAll(); // For Debugging Score
+		PlayerPrefs.DeleteAll(); // For Debugging Score
 		maxDistance = gameController.maxDistance;
 		pastMaxScore = PlayerPrefs.GetFloat(highScoreKey,99999f);
 		print("Current Highsore is " + PlayerPrefs.GetFloat(highScoreKey,0f));
@@ -41,6 +41,9 @@ public class ScoreManager : MonoBehaviour
 			PlayerPrefs.SetFloat(highScoreKey, score);
 			PlayerPrefs.Save();
 			// Show update
+			if (SoundManager.instance) {
+				SoundManager.instance.PlayWin ();
+			}
 			print("I have been saved to high score with... " + PlayerPrefs.GetFloat(highScoreKey,0f));
 			pastHighScore.text = "New HighScore: " + truncatedScore;
 			pastHighScore.fontSize = 24;
