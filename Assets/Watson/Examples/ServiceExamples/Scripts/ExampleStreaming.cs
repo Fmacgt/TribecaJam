@@ -61,16 +61,24 @@ public class ExampleStreaming : MonoBehaviour
     private List<string> _targetBuffer;
     private List<string> _wordBuffer;
     private int _matchedCount = 0;
-    private string _recognizedString = "";
+	private int _matchDisplayPtr = 0;
+	private bool _missionCompleted = false;
+
     private float missionTimer = 0f;
     private bool startMissionTimer = false;
 
     /////////////////////////////////////////////////////////////////////////////////////
 
-    void Start()
-    {
+	private void Awake()
+	{
         _targetBuffer = new List<string>(16);
         _wordBuffer = new List<string>(32);
+
+		_builder = new StringBuilder();
+	}
+
+    void Start()
+    {
         LogSystem.InstallDefaultReactors();
         performanceDisplay.text = "";
 
@@ -108,6 +116,20 @@ public class ExampleStreaming : MonoBehaviour
                 _pickNewText();
             }
         }
+
+
+		if (_matchDisplayPtr < _matchedCount) {
+			_highlightMatchedWords();
+
+			if (_missionCompleted && _matchDisplayPtr == _matchedCount) {
+				_missionCompleted = false;
+
+                generateRank(missionTimer);
+
+				// wait and pick the next word
+				LeanTween.delayedCall(gameObject, 0.5f, _pickNewText);
+			}
+		}
     }
 
     public void StartGame()
@@ -299,7 +321,7 @@ public class ExampleStreaming : MonoBehaviour
 
     private void _tryToProcess()
     {
-        if (_wordBuffer.Count == 0)
+        if (_wordBuffer.Count == 0 && _missionCompleted)
         {
             return;
         }
@@ -329,53 +351,50 @@ public class ExampleStreaming : MonoBehaviour
             }
 
             // end of matching, check remaining words
-            if (_matchedCount > 0)
-            {
-                _builder.Length = 0;
-
-                _builder.Append("<color='red'>");
-                for (int i = 0; i < _matchedCount; i++)
-                {
-                    _builder.Append(_targetBuffer[i]);
-                    _builder.Append(" ");
-                }
-                _builder.Append("</color>");
-
-                for (int i = _matchedCount; i < _targetBuffer.Count; i++)
-                {
-                    _builder.Append(_targetBuffer[i]);
-                    _builder.Append(" ");
-                }
-
-                targetText.text = _builder.ToString();
-            }
-
             _wordBuffer.RemoveRange(0, matchFrom);
 
 
             character.boost(8f);
             character.successFX();
 			
-            if (_matchedCount >= _targetBuffer.Count)
+            if (!_missionCompleted && _matchedCount >= _targetBuffer.Count)
             {
+				_missionCompleted = true;
 
                 // a complete match
-
-                generateRank(missionTimer);
                 startMissionTimer = false;
                 missionTimer = 0f;
-                _pickNewText();
-
-
             }
-
-
         }
         else
         {
             _wordBuffer.RemoveRange(0, Mathf.Min(startIdx, _wordBuffer.Count));
         }
     }
+
+	private void _highlightMatchedWords()
+	{
+		_matchDisplayPtr++;
+
+
+		_builder.Length = 0;
+
+		_builder.Append("<color='red'>");
+		for (int i = 0; i < _matchDisplayPtr; i++)
+		{
+			_builder.Append(_targetBuffer[i]);
+			_builder.Append(" ");
+		}
+		_builder.Append("</color>");
+
+		for (int i = _matchDisplayPtr; i < _targetBuffer.Count; i++)
+		{
+			_builder.Append(_targetBuffer[i]);
+			_builder.Append(" ");
+		}
+
+		targetText.text = _builder.ToString();
+	}
 
     private void generateRank(float missionTimer)
     {
