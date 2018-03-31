@@ -1,32 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour {
-	static ScoreManager instance;
-
-	public ScoreManager Instance { 
-		get { return instance; }
-	}
+public class ScoreManager : MonoBehaviour 
+{
 	public RunningCharacter gameController;
-	public GUIText scoreText;
+	public Text scoreText;
+
+	//==============================================================================
 
 	private int score;
 	private float timerScore;
 	private float maxDistance;
-	// Use this for initialization
-	void Awake () {
-		if (instance == null) {
-			instance = this;
-		} else {
-			Destroy (gameObject);
-		}
-	}
+
+	/////////////////////////////////////////////////////////////////////////////////////
 
 	void Start ()
 	{
 		maxDistance = gameController.maxDistance;
-		print(maxDistance);
+//		print(maxDistance);
 		score = 0;
 		// UpdateScore ();
 	}
@@ -38,6 +32,8 @@ public class ScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timerScore = gameController.GetTimer();
+
+
 		if (Input.GetKeyDown("space")) {
 			print("The score is " + timerScore);
 		}

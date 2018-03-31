@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26086345, g: 0.26258242, b: 1.0239875, a: 1}
+  m_IndirectSpecularColor: {r: 0.5328535, g: 0.3168345, b: 0.91225106, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -783,6 +783,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 569865433}
+--- !u!1 &586963481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 586963483}
+  - component: {fileID: 586963482}
+  m_Layer: 0
+  m_Name: Score Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &586963482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 586963481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7871cf385877c4909909fc745d690aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 807926258}
+  scoreText: {fileID: 0}
+--- !u!4 &586963483
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 586963481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &807926257
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +878,7 @@ MonoBehaviour:
   ResultText: {fileID: 352165786}
   charTrans: {fileID: 1468994825}
   successParticle: {fileID: 1692321519}
+  scoreManager: {fileID: 586963482}
 --- !u!4 &807926259
 Transform:
   m_ObjectHideFlags: 0
@@ -1620,10 +1663,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 807926258}
+  targetTextList: {fileID: 11400000, guid: f2544b391772e45d0b9d1e0103db42fd, type: 2}
   ResultsField: {fileID: 1863902092}
   targetText: {fileID: 359635948}
   performanceDisplay: {fileID: 1265335388}
-  targetTextList: {fileID: 11400000, guid: f2544b391772e45d0b9d1e0103db42fd, type: 2}
+  username: 90b1d881-5177-4e18-9210-a9ad56cf93dd
+  password: eZmE7JX3VapA
 --- !u!4 &1646685151
 Transform:
   m_ObjectHideFlags: 0

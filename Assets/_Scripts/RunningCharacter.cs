@@ -28,6 +28,8 @@ public sealed class RunningCharacter : MonoBehaviour
     public Transform charTrans;
     public ParticleSystem successParticle;
 
+	public ScoreManager scoreManager;
+
     //==============================================================================
 
     private float _speed = 0f;
@@ -153,8 +155,10 @@ public sealed class RunningCharacter : MonoBehaviour
     public void Win()
     {
         EndGame("You Win");
+
 		// Get Score 
-		ScoreManager.Instance.FinalScore(GetTimer());
+		scoreManager.FinalScore(timer);
+//		ScoreManager.Instance.FinalScore(GetTimer());
     }
 
     public void RestartGame()
