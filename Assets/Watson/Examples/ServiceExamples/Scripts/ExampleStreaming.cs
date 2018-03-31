@@ -147,12 +147,19 @@ public class ExampleStreaming : MonoBehaviour
     public void StartGame()
     {
         _gameRunning = true;
+        targetTexts[0].gameObject.SetActive(true);
+        targetTexts[1].gameObject.SetActive(true);
+
         _pickNewText();
     }
 
     public void StopGame()
     {
         _gameRunning = false;
+        targetTexts[0].gameObject.SetActive(false);
+        targetTexts[1].gameObject.SetActive(false);
+        targetTexts[0].text = "";
+        targetTexts[1].text = "";
     }
 
     public bool Active
@@ -163,7 +170,7 @@ public class ExampleStreaming : MonoBehaviour
             if (value && !_speechToText.IsListening)
             {
                 //_speechToText.CustomizationId = "d2097a62-9d08-47ce-aebb-bae11b7f27da";
-                _speechToText.CustomizationId = "f1ce3b76-d297-4193-9c19-eec1546d6d39";
+                _speechToText.CustomizationId = "fced2a14-8b50-4300-b914-189f3158038a";
                 _speechToText.CustomizationWeight = 1f;                
                 _speechToText.AcousticCustomizationId = "4508215a-48e2-4e1f-aa4b-670cdef446e0";
                 _speechToText.DetectSilence = true;

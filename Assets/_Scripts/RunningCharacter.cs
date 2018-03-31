@@ -18,6 +18,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public GameObject[] InGameUIGroup;
     public GameObject[] StartScreenUIGroup;
     public GameObject[] EndGameUIGroup;
+	public GameObject winSplash;
     public ExampleStreaming recordingScript;
 
     public Text speedLabel;
@@ -32,7 +33,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public Transform UFOTrans;
     public ParticleSystem successParticle;
 
-	public ScoreManager scoreManager;
+    public ScoreManager scoreManager;
     public Animator charAnim;
     public TrailCtrl trailScript;
     //==============================================================================
@@ -40,8 +41,9 @@ public sealed class RunningCharacter : MonoBehaviour
     private float _speed = 0f;
     private float _distance = 0f;
     private float _remainingDistance = 0f;
-	private bool _gameEnded = false;
+    private bool _gameEnded = false;
     private bool startGame = false;
+    private bool starting = false;
     private float remainTime;
     private float timer = 0f;
     private float targetSpeed = 0;
@@ -62,6 +64,7 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         successParticle.Play();
     }
+
     /////////////////////////////////////////////////////////////////////////////////////
 
     private void Start()
@@ -83,20 +86,30 @@ public sealed class RunningCharacter : MonoBehaviour
             _speed = Mathf.Clamp(_speed - slowRate * Time.deltaTime, minSpeed, maxSpeed);
             //_speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * 3f);
             charAnim.SetFloat("runSpeed", _speed / 5f * 1.2f);
+            charAnim.SetFloat("gear", _speed / 40f);
+
             _distance += _speed * Time.deltaTime;
-            UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
-            if(UFOTrans.position.x > maxDistance)
+
+            if (UFOTrans.position.x < maxDistance + 40f)
             {
-                UFOTrans.position = new Vector3(maxDistance, UFOTrans.position.y, UFOTrans.position.z);
+                UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
             }
+            if (UFOTrans.position.x > maxDistance + 40f)
+            {
+                UFOTrans.position = new Vector3(maxDistance + 40f, UFOTrans.position.y, UFOTrans.position.z);
+            }
+
             charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
+
             _remainingDistance = maxDistance - _distance;
             timer += Time.deltaTime;
             remainTime = timeLimit - timer;
 
+			Debug.LogFormat("[LOG] distance: {0}", _remainingDistance);
             if (_remainingDistance <= 0f)
             {
                 _remainingDistance = 0f;
+
                 Win();
             }
 
@@ -104,9 +117,15 @@ public sealed class RunningCharacter : MonoBehaviour
             {
                 Fail();
             }
-			if (!_gameEnded) {
-				_updateDisplay();
-			}
+            if (!_gameEnded)
+            {
+                _updateDisplay();
+            }
+        }
+        else if (starting)
+        {
+            UFOTrans.Translate(_speed * Time.deltaTime, 0f, 0f);
+            charTrans.Translate(0f, 0f, _speed * Time.deltaTime);
         }
     }
 
@@ -118,8 +137,9 @@ public sealed class RunningCharacter : MonoBehaviour
 
     public void StartGame()
     {
+        starting = true;
         StartCoroutine("GameStart");
-
+        charAnim.Play("Default Run");
         reset();
 
         toggleDisplays(EndGameUIGroup, false);
@@ -142,6 +162,7 @@ public sealed class RunningCharacter : MonoBehaviour
         yield return new WaitForSeconds(1f);
         countdownText.text = "";
         recordingScript.StartGame();
+        starting = false;
         startGame = true;
     }
 
@@ -194,6 +215,8 @@ public sealed class RunningCharacter : MonoBehaviour
 		if (SoundManager.instance) {
 			SoundManager.instance.PlayLose ();
 		}
+        _speed = 0;
+        charAnim.SetBool("exhausted", true);
     }
 
     public void Win()
@@ -205,24 +228,29 @@ public sealed class RunningCharacter : MonoBehaviour
 		if (SoundManager.instance) {
 			SoundManager.instance.PlayWin ();
 		}
-
+		winSplash.SetActive(true);
 		// ScoreManager.Instance.FinalScore(GetTimer());
     }
 
     public void RestartGame()
     {
         hideDisplays();
+		winSplash.SetActive(false);
 
         StartGame();
     }
 
-	public float GetTimer() {
-		return timer;
-	}
+    public float GetTimer()
+    {
+        return timer;
+    }
 
     private void reset()
     {
+        charAnim.SetBool("exhausted", false);
         timer = 0f;
+        charAnim.SetFloat("gear", 0f);
+        charAnim.SetFloat("runSpeed", 1f);
         _speed = initSpeed;
         _distance = 0f;
         _remainingDistance = maxDistance;
@@ -231,5 +259,6 @@ public sealed class RunningCharacter : MonoBehaviour
         charTrans.position = _origPos;
         UFOTrans.position = _UFOOrigPos;
         trailScript.Reset();
+        _gameEnded = false;
     }
 }
