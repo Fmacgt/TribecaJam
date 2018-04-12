@@ -289,8 +289,8 @@ public class ExampleStreaming : MonoBehaviour
             {
                 foreach (var alt in res.alternatives)
                 {
-                    string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n",
-                                      alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
+                    //string text = string.Format("[{3}] {0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence, result.result_index);
+                    string text = string.Format("{0}", alt.transcript);
                     Log.Debug("ExampleStreaming.OnRecognize()", text);
                     ResultsField.text = text;
 

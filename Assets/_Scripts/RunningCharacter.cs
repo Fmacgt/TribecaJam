@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using UnityEngine.SceneManagement;
 
 public sealed class RunningCharacter : MonoBehaviour
 {
@@ -72,11 +73,11 @@ public sealed class RunningCharacter : MonoBehaviour
 
     /////////////////////////////////////////////////////////////////////////////////////
 
+
     private void Start()
-    {
+    { 
         _origPos = charTrans.position;
         _UFOOrigPos = UFOTrans.position;
-
         hideDisplays();
         //_updateDisplay();
         toggleDisplays(InGameUIGroup, false);
@@ -153,12 +154,12 @@ public sealed class RunningCharacter : MonoBehaviour
 
     IEnumerator GameStart()
     {
-        charAnim.Play("Idle");
-        introDirector.Stop();
+        
+
         introDirector.Play();
-        outroDirector.Stop();
+
         //Wait until finished playing;
-        yield return new WaitForSeconds(3.6f);
+        yield return new WaitForSeconds(7.5f);
         starting = true;
         toggleDisplays(InGameUIGroup, true);
         _updateDisplay();
@@ -235,13 +236,14 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         // Get Score
         _gameEnded = true;
-
+        toggleDisplays(InGameUIGroup, false);
         //charAnim.Play("Win");
         outroDirector.Play();
 		recordingScript.StopGame();
-        LeanTween.delayedCall(6f, ()=>{
+        LeanTween.delayedCall(11f, ()=>{
 		    winSplash.SetActive(true);
             scoreManager.FinalScore(timer);
+            outroDirector.Pause();
 			EndGame("You Win");
 
 			if (SoundManager.instance) {
@@ -253,10 +255,20 @@ public sealed class RunningCharacter : MonoBehaviour
 
     public void RestartGame()
     {
+        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(1,LoadSceneMode.Additive);
+        /*
         hideDisplays();
 		winSplash.SetActive(false);
+        reset();
+        outroDirector.Resume();
 
-        StartGame();
+        introDirector.time = 0f;
+        introDirector.Stop();
+        toggleDisplays(EndGameUIGroup, false);
+        toggleDisplays(StartScreenUIGroup, true);
+        //StartGame();
+        */
     }
 
     public float GetTimer()
@@ -280,5 +292,6 @@ public sealed class RunningCharacter : MonoBehaviour
         UFOTrans.position = _UFOOrigPos;
         trailScript.Reset();
         _gameEnded = false;
+        charAnim.Play("Idle");
     }
 }
