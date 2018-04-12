@@ -38,9 +38,6 @@ public sealed class RunningCharacter : MonoBehaviour
     public Animator charAnim;
     public TrailCtrl trailScript;
 
-    public Transform cameraAnchorTrans;
-    public Transform char0Trans;
-    public Transform ufo0Trans;
     public PlayableDirector introDirector;
 
     //==============================================================================
@@ -78,7 +75,7 @@ public sealed class RunningCharacter : MonoBehaviour
     {
         _origPos = charTrans.position;
         _UFOOrigPos = UFOTrans.position;
-        ufo0Trans.position = Vector3.left * 200f;
+
         hideDisplays();
         //_updateDisplay();
         toggleDisplays(InGameUIGroup, false);
@@ -160,16 +157,10 @@ public sealed class RunningCharacter : MonoBehaviour
         introDirector.Play();
         //Wait until finished playing;
         yield return new WaitForSeconds(3.6f);
-        //introDirector.Pause();
         starting = true;
         toggleDisplays(InGameUIGroup, true);
         _updateDisplay();
         recordingScript.StartRecording();
-        /*
-        char0Trans.Rotate(0f, 180f, 0f);
-        Camera.main.transform.position = cameraAnchorTrans.position;
-        Camera.main.transform.rotation = cameraAnchorTrans.rotation;
-        */
         charAnim.Play("Default Run");
         countdownText.text = "3";
         yield return new WaitForSeconds(1f);
