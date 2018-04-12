@@ -39,6 +39,7 @@ public sealed class RunningCharacter : MonoBehaviour
     public TrailCtrl trailScript;
 
     public PlayableDirector introDirector;
+    public PlayableDirector outroDirector;
 
     //==============================================================================
 
@@ -113,7 +114,7 @@ public sealed class RunningCharacter : MonoBehaviour
             if (_remainingDistance <= 0f)
             {
                 _remainingDistance = 0f;
-
+                UFOTrans.position = new Vector3(_distance + 33f, UFOTrans.position.y, UFOTrans.position.z);
                 Win();
             }
 
@@ -155,6 +156,7 @@ public sealed class RunningCharacter : MonoBehaviour
         charAnim.Play("Idle");
         introDirector.Stop();
         introDirector.Play();
+        outroDirector.Stop();
         //Wait until finished playing;
         yield return new WaitForSeconds(3.6f);
         starting = true;
@@ -234,9 +236,10 @@ public sealed class RunningCharacter : MonoBehaviour
         // Get Score
         _gameEnded = true;
 
-        charAnim.Play("Win");
+        //charAnim.Play("Win");
+        outroDirector.Play();
 		recordingScript.StopGame();
-        LeanTween.delayedCall(0.5f, ()=>{
+        LeanTween.delayedCall(6f, ()=>{
 		    winSplash.SetActive(true);
             scoreManager.FinalScore(timer);
 			EndGame("You Win");

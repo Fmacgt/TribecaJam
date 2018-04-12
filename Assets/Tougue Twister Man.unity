@@ -143,6 +143,10 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &75312256 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100150, guid: 4d88fa5f24d414b00904147af34dea38, type: 3}
+  m_PrefabInternal: {fileID: 353715838}
 --- !u!1 &86214602
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +555,63 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 131717309}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &156624408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 156624410}
+  - component: {fileID: 156624409}
+  m_Layer: 0
+  m_Name: Outro timeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &156624409
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156624408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: d9a066f0744ce4596bef79f8ca976f46, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 156624408}
+  - key: {fileID: 0}
+    value: {fileID: 2089010049}
+  - key: {fileID: 0}
+    value: {fileID: 2089010049}
+  - key: {fileID: 114059047504533536, guid: d9a066f0744ce4596bef79f8ca976f46, type: 2}
+    value: {fileID: 2089010049}
+  - key: {fileID: 114081656910693242, guid: d9a066f0744ce4596bef79f8ca976f46, type: 2}
+    value: {fileID: 75312256}
+  - key: {fileID: 114682379243302576, guid: d9a066f0744ce4596bef79f8ca976f46, type: 2}
+    value: {fileID: 969596415}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &156624410
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156624408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &249853924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,7 +2357,7 @@ Transform:
   - {fileID: 1405380903}
   - {fileID: 131717310}
   m_Father: {fileID: 1468994825}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &743160291
 MonoBehaviour:
@@ -2387,6 +2448,7 @@ MonoBehaviour:
   charAnim: {fileID: 1148611191}
   trailScript: {fileID: 743160291}
   introDirector: {fileID: 1468912156}
+  outroDirector: {fileID: 156624409}
 --- !u!4 &807926259
 Transform:
   m_ObjectHideFlags: 0
@@ -3161,12 +3223,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1111472905}
-  m_LocalRotation: {x: 0.12696676, y: -0.18213268, z: 0.023723725, w: 0.9747535}
-  m_LocalPosition: {x: 1.6238472, y: 1.7775112, z: -0.72003245}
-  m_LocalScale: {x: 1.2774085, y: 1.277406, z: 1.2774081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.113119}
+  m_LocalScale: {x: 3.9385111, y: 3.9385002, z: 3.9385092}
   m_Children: []
-  m_Father: {fileID: 1468994825}
-  m_RootOrder: 7
+  m_Father: {fileID: 1391086066}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1111472907
 MeshRenderer:
@@ -4097,7 +4159,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1111472906}
   m_Father: {fileID: 2089010050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9656,8 +9719,8 @@ Transform:
   m_Children:
   - {fileID: 1391086066}
   m_Father: {fileID: 1468994825}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0.80500007, y: -7.4300003, z: -2.0410001}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: -0.00000001817008, y: 0.000003817534, z: -0.0000001531255}
 --- !u!95 &2089010051
 Animator:
   serializedVersion: 3
