@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: 1484c0e46975d404ea55182e89fce3cc
+timeCreated: 1513373512
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: litter_box_B_pCube2
+    100002: litter_box_B_polySurface1
+    100004: litter_box_B_polySurface2
+    100006: litter_box_B_polySurface3
+    100008: litter_box_B_pSphere2
+    100010: //RootNode
+    100012: pCube1_litter_box_B
+    100014: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube1_litterbox_B
+    100016: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube2_litterbox_B
+    100018: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface2_litterbox_B
+    100020: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface3_litterbox_B
+    100022: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface4_litterbox_B
+    100024: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pSphere2_litterbox_B
+    400000: litter_box_B_pCube2
+    400002: litter_box_B_polySurface1
+    400004: litter_box_B_polySurface2
+    400006: litter_box_B_polySurface3
+    400008: litter_box_B_pSphere2
+    400010: //RootNode
+    400012: pCube1_litter_box_B
+    400014: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube1_litterbox_B
+    400016: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube2_litterbox_B
+    400018: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface2_litterbox_B
+    400020: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface3_litterbox_B
+    400022: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface4_litterbox_B
+    400024: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pSphere2_litterbox_B
+    2300000: litter_box_B_pCube2
+    2300002: litter_box_B_polySurface1
+    2300004: litter_box_B_polySurface2
+    2300006: litter_box_B_polySurface3
+    2300008: litter_box_B_pSphere2
+    2300010: pCube1_litter_box_B
+    2300012: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube1_litterbox_B
+    2300014: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube2_litterbox_B
+    2300016: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface2_litterbox_B
+    2300018: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface3_litterbox_B
+    2300020: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface4_litterbox_B
+    2300022: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pSphere2_litterbox_B
+    3300000: litter_box_B_pCube2
+    3300002: litter_box_B_polySurface1
+    3300004: litter_box_B_polySurface2
+    3300006: litter_box_B_polySurface3
+    3300008: litter_box_B_pSphere2
+    3300010: pCube1_litter_box_B
+    3300012: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube1_litterbox_B
+    3300014: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube2_litterbox_B
+    3300016: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface2_litterbox_B
+    3300018: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface3_litterbox_B
+    3300020: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface4_litterbox_B
+    3300022: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pSphere2_litterbox_B
+    4300000: litter_box_B_pCube2
+    4300002: litter_box_B_polySurface1
+    4300004: litter_box_B_polySurface2
+    4300006: litter_box_B_polySurface3
+    4300008: litter_box_B_pSphere2
+    4300010: pCube1_litter_box_B
+    4300012: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube1_litterbox_B
+    4300014: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pCube2_litterbox_B
+    4300016: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface2_litterbox_B
+    4300018: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface3_litterbox_B
+    4300020: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:polySurface4_litterbox_B
+    4300022: Furniture_litterbox_B_v1:litter_box_B_Furniture_litterbox_B_v1:pSphere2_litterbox_B
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_litterbox_B_v1_litter_box_B_Furniture_litterbox_B_v1_pCube1_litterbox_BMat
+    second: {fileID: 2100000, guid: b7a322eda9d1f4530ac91280d5862224, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_litterbox_B_v1_litter_box_B_Furniture_litterbox_B_v1_pCube2_litterbox_BMat
+    second: {fileID: 2100000, guid: b26c7cc52f1eb40d9a23ecc885275081, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_litterbox_B_v1_litter_box_B_Furniture_litterbox_B_v1_pSphere2_litterbox_BMat
+    second: {fileID: 2100000, guid: 2b3ac5a26bcb549beb3e4145e655973c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_litterbox_B_v1_litter_box_B_Furniture_litterbox_B_v1_polySurface2_litterbox_BMat
+    second: {fileID: 2100000, guid: f1d429bc3613b468b9892feb460154ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_litterbox_B_v1_litter_box_B_Furniture_litterbox_B_v1_polySurface3_litterbox_BMat
+    second: {fileID: 2100000, guid: bc50a7a45b0ea46708084104ba44b3ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_litterbox_B_v1_litter_box_B_Furniture_litterbox_B_v1_polySurface4_litterbox_BMat
+    second: {fileID: 2100000, guid: 490cecb782e4847998c9d00437b37496, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: litter_box_B_pCube2Mat
+    second: {fileID: 2100000, guid: df820211fa2b646008762372ad698eea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: litter_box_B_pSphere2Mat
+    second: {fileID: 2100000, guid: 4ca61811a92d34fbc9bb79fa20d2e2c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: litter_box_B_polySurface1Mat
+    second: {fileID: 2100000, guid: e2723d06a847447ac8d84df207bc3abc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: litter_box_B_polySurface2Mat
+    second: {fileID: 2100000, guid: b748ef0c97975475bb1eacf44bd830f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: litter_box_B_polySurface3Mat
+    second: {fileID: 2100000, guid: 966af9efebef248e38a174361d6e1e3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pCube1_litter_box_BMat
+    second: {fileID: 2100000, guid: 714531bcaa40b415ba145f0ef6b918eb, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

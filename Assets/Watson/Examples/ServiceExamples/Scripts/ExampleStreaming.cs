@@ -42,7 +42,7 @@ public class ExampleStreaming : MonoBehaviour
     public string username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
     public string password = "eZmE7JX3VapA";
 
-	//==============================================================================
+    //==============================================================================
 
     private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
 
@@ -57,29 +57,29 @@ public class ExampleStreaming : MonoBehaviour
     private Mission thisMission;
     private bool _gameRunning = false;
 
-	//==============================================================================
+    //==============================================================================
 
-	private StringBuilder _builder;
+    private StringBuilder _builder;
     private int _textPtr = 0;
 
     private List<string> _targetBuffer;
     private List<string> _wordBuffer;
     private int _matchedCount = 0;
-	private int _matchDisplayPtr = 0;
-	private bool _missionCompleted = false;
+    private int _matchDisplayPtr = 0;
+    private bool _missionCompleted = false;
 
     private float missionTimer = 0f;
     private bool startMissionTimer = false;
 
     /////////////////////////////////////////////////////////////////////////////////////
 
-	private void Awake()
-	{
+    private void Awake()
+    {
         _targetBuffer = new List<string>(16);
         _wordBuffer = new List<string>(32);
 
-		_builder = new StringBuilder();
-	}
+        _builder = new StringBuilder();
+    }
 
     void Start()
     {
@@ -130,18 +130,18 @@ public class ExampleStreaming : MonoBehaviour
         }
 
 
-		if (_matchDisplayPtr < _matchedCount) {
-			_highlightMatchedWords();
+        if (_matchDisplayPtr < _matchedCount) {
+            _highlightMatchedWords();
 
-			if (_missionCompleted && _matchDisplayPtr == _matchedCount) {
-				_missionCompleted = false;
+            if (_missionCompleted && _matchDisplayPtr == _matchedCount) {
+                _missionCompleted = false;
 
                 generateRank(missionTimer);
 
-				// wait and pick the next word
-				LeanTween.delayedCall(gameObject, 0.5f, _pickNewText);
-			}
-		}
+                // wait and pick the next word
+                LeanTween.delayedCall(gameObject, 0.5f, _pickNewText);
+            }
+        }
     }
 
     public void StartGame()
@@ -389,10 +389,10 @@ public class ExampleStreaming : MonoBehaviour
 
 
 
-			
+            
             if (!_missionCompleted && _matchedCount >= _targetBuffer.Count)
             {
-				_missionCompleted = true;
+                _missionCompleted = true;
 
                 if(missionTimer > 0 && missionTimer > thisMission.fastTime)
                 {
@@ -415,29 +415,29 @@ public class ExampleStreaming : MonoBehaviour
         }
     }
 
-	private void _highlightMatchedWords()
-	{
-		_matchDisplayPtr++;
+    private void _highlightMatchedWords()
+    {
+        _matchDisplayPtr++;
 
 
-		_builder.Length = 0;
+        _builder.Length = 0;
 
-		_builder.Append("<color='red'>");
-		for (int i = 0; i < _matchDisplayPtr; i++)
-		{
-			_builder.Append(_targetBuffer[i]);
-			_builder.Append(" ");
-		}
-		_builder.Append("</color>");
+        _builder.Append("<color='red'>");
+        for (int i = 0; i < _matchDisplayPtr; i++)
+        {
+            _builder.Append(_targetBuffer[i]);
+            _builder.Append(" ");
+        }
+        _builder.Append("</color>");
 
-		for (int i = _matchDisplayPtr; i < _targetBuffer.Count; i++)
-		{
-			_builder.Append(_targetBuffer[i]);
-			_builder.Append(" ");
-		}
+        for (int i = _matchDisplayPtr; i < _targetBuffer.Count; i++)
+        {
+            _builder.Append(_targetBuffer[i]);
+            _builder.Append(" ");
+        }
 
         targetTexts[_missionId].text = _builder.ToString();
-	}
+    }
 
     private void generateRank(float missionTimer)
     {
@@ -446,9 +446,9 @@ public class ExampleStreaming : MonoBehaviour
         {
             //TODO: give a OK rank visual effect
             performanceDisplay.text = "OK";
-			if (SoundManager.instance) {
-				SoundManager.instance.PlaySuccess ();
-			}
+            if (SoundManager.instance) {
+                SoundManager.instance.PlaySuccess ();
+            }
             character.boost(8f);
         }
         else if (missionTimer < thisMission.fastTime)
@@ -457,10 +457,10 @@ public class ExampleStreaming : MonoBehaviour
             performanceDisplay.text = "Perfect";
             Debug.Log("Perfect");
             //TODO: give a FAST rank visual effect
-			if (SoundManager.instance) {
-				SoundManager.instance.PlaySuccess ();
-				SoundManager.instance.PlayZoom ();
-			}
+            if (SoundManager.instance) {
+                SoundManager.instance.PlaySuccess ();
+                SoundManager.instance.PlayZoom ();
+            }
         }
 
         if (thisMission.animationTrigger != null)
@@ -473,7 +473,7 @@ public class ExampleStreaming : MonoBehaviour
 
     private void _debugPrintBuffer(List<string> buffer)
     {
-		_builder.Length = 0;
+        _builder.Length = 0;
         foreach (var word in buffer)
         {
             _builder.Append(word);

@@ -6,13 +6,13 @@ public class UFOCtrl : MonoBehaviour {
 
     public float distX;
     public float destX;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        
+    }
+    
+    // Update is called once per frame
+    void Update () {
+        
+    }
 }

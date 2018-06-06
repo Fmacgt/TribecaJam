@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 54e4468ecef3f46759cd7beb07ec5f8a
+timeCreated: 1513373513
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bed_C_pCube2
+    100004: bed_C_pCylinder3
+    100006: bed_C_pCylinder4
+    100008: bed_C_pSphere4
+    100010: pCube1_bed_C
+    100012: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube1_bed_C
+    100014: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube2_bed_C
+    100016: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder3_bed_C
+    100018: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder4_bed_C
+    100020: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pSphere4_bed_C
+    400000: //RootNode
+    400002: bed_C_pCube2
+    400004: bed_C_pCylinder3
+    400006: bed_C_pCylinder4
+    400008: bed_C_pSphere4
+    400010: pCube1_bed_C
+    400012: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube1_bed_C
+    400014: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube2_bed_C
+    400016: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder3_bed_C
+    400018: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder4_bed_C
+    400020: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pSphere4_bed_C
+    2300000: bed_C_pCube2
+    2300002: bed_C_pCylinder3
+    2300004: bed_C_pCylinder4
+    2300006: bed_C_pSphere4
+    2300008: pCube1_bed_C
+    2300010: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube1_bed_C
+    2300012: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube2_bed_C
+    2300014: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder3_bed_C
+    2300016: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder4_bed_C
+    2300018: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pSphere4_bed_C
+    3300000: bed_C_pCube2
+    3300002: bed_C_pCylinder3
+    3300004: bed_C_pCylinder4
+    3300006: bed_C_pSphere4
+    3300008: pCube1_bed_C
+    3300010: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube1_bed_C
+    3300012: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube2_bed_C
+    3300014: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder3_bed_C
+    3300016: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder4_bed_C
+    3300018: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pSphere4_bed_C
+    4300000: bed_C_pCube2
+    4300002: bed_C_pCylinder3
+    4300004: bed_C_pCylinder4
+    4300006: bed_C_pSphere4
+    4300008: pCube1_bed_C
+    4300010: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube1_bed_C
+    4300012: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCube2_bed_C
+    4300014: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder3_bed_C
+    4300016: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pCylinder4_bed_C
+    4300018: Furniture_bed_C_v1:bed_C_Furniture_bed_C_v1:pSphere4_bed_C
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bed_C_v1_bed_C_Furniture_bed_C_v1_pCube1_bed_CMat
+    second: {fileID: 2100000, guid: 5fa49b7eeac9944abbcd4eea7b08f165, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bed_C_v1_bed_C_Furniture_bed_C_v1_pCube2_bed_CMat
+    second: {fileID: 2100000, guid: a8ee7394af91043c8aae0112cdc45b2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bed_C_v1_bed_C_Furniture_bed_C_v1_pCylinder3_bed_CMat
+    second: {fileID: 2100000, guid: 0958ee45c98dd48d08806958d6aa2993, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bed_C_v1_bed_C_Furniture_bed_C_v1_pCylinder4_bed_CMat
+    second: {fileID: 2100000, guid: 860183a202e074898b5107cb52f323ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bed_C_v1_bed_C_Furniture_bed_C_v1_pSphere4_bed_CMat
+    second: {fileID: 2100000, guid: ce1a7547f88854a8caa6c24078a0c902, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_C_pCube2Mat
+    second: {fileID: 2100000, guid: 4fa7d2699d40d489da0814f812b8239e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_C_pCylinder3Mat
+    second: {fileID: 2100000, guid: c5ee311c600eb44c4b1d5d6fee501a29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_C_pCylinder4Mat
+    second: {fileID: 2100000, guid: e6d0c221a0cde4cca94b6ae6d9cebf74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_C_pSphere4Mat
+    second: {fileID: 2100000, guid: 2dace2b35f33d4147937de34d45b2840, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pCube1_bed_CMat
+    second: {fileID: 2100000, guid: 54c94fc9e78ad442c8942c1a74b253e9, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

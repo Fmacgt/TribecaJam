@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: 8a7d551ece44b428bb7ce38b5ae9f4f1
+timeCreated: 1513373513
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bed_A_polySurface3
+    100004: bed_A_polySurface4
+    100006: polySurface1_bed_A
+    100008: bed_A_polySurface2_bed_A2
+    100010: bed_A_polySurface3_bed_A2
+    100012: bed_A_polySurface4_bed_A2
+    400000: //RootNode
+    400002: bed_A_polySurface3
+    400004: bed_A_polySurface4
+    400006: polySurface1_bed_A
+    400008: bed_A_polySurface2_bed_A2
+    400010: bed_A_polySurface3_bed_A2
+    400012: bed_A_polySurface4_bed_A2
+    2300000: bed_A_polySurface3
+    2300002: bed_A_polySurface4
+    2300004: polySurface1_bed_A
+    2300006: bed_A_polySurface2_bed_A2
+    2300008: bed_A_polySurface3_bed_A2
+    2300010: bed_A_polySurface4_bed_A2
+    3300000: bed_A_polySurface3
+    3300002: bed_A_polySurface4
+    3300004: polySurface1_bed_A
+    3300006: bed_A_polySurface2_bed_A2
+    3300008: bed_A_polySurface3_bed_A2
+    3300010: bed_A_polySurface4_bed_A2
+    4300000: bed_A_polySurface3
+    4300002: bed_A_polySurface4
+    4300004: polySurface1_bed_A
+    4300006: bed_A_polySurface2_bed_A2
+    4300008: bed_A_polySurface3_bed_A2
+    4300010: bed_A_polySurface4_bed_A2
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_A_polySurface2_bed_A2Mat
+    second: {fileID: 2100000, guid: d24f85a05f0e543888763ec202d912de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_A_polySurface3Mat
+    second: {fileID: 2100000, guid: 915f3df7ad8db40d38a747a3cb3f0723, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_A_polySurface3_bed_A2Mat
+    second: {fileID: 2100000, guid: b1a3f159579184ce78b2949821d1b819, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_A_polySurface4Mat
+    second: {fileID: 2100000, guid: 3659fb71d0fe14a7e8b175f39de6b5bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bed_A_polySurface4_bed_A2Mat
+    second: {fileID: 2100000, guid: c95c8c87cdbe34df8936f4f509399b3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: polySurface1_bed_AMat
+    second: {fileID: 2100000, guid: 7c6eb5fdce1e445d39f2757b6f5a8e31, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

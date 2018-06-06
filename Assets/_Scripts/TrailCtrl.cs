@@ -15,7 +15,7 @@ public class TrailCtrl : MonoBehaviour
             trailObjs[i].SetActive(false);
         }
     }
-	
+    
     // Update is called once per frame
     void Update()
     {

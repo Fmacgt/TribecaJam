@@ -14,6 +14,6 @@ namespace TribecaJam
 
         public string animationTrigger;
 
-
+        public GameObject targetPrefab;
     }
 }

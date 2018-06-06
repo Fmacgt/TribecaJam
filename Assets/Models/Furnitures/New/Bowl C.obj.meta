@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: be60dc837f0444dd0841abbbede60153
+timeCreated: 1513373513
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bowl_C_pCylinder4
+    100004: bowl_C_pSphere2
+    100006: pCylinder6_bowl_C
+    100008: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder4_bowl_C
+    100010: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder6_bowl_C
+    100012: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pSphere2_bowl_C
+    400000: //RootNode
+    400002: bowl_C_pCylinder4
+    400004: bowl_C_pSphere2
+    400006: pCylinder6_bowl_C
+    400008: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder4_bowl_C
+    400010: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder6_bowl_C
+    400012: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pSphere2_bowl_C
+    2300000: bowl_C_pCylinder4
+    2300002: bowl_C_pSphere2
+    2300004: pCylinder6_bowl_C
+    2300006: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder4_bowl_C
+    2300008: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder6_bowl_C
+    2300010: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pSphere2_bowl_C
+    3300000: bowl_C_pCylinder4
+    3300002: bowl_C_pSphere2
+    3300004: pCylinder6_bowl_C
+    3300006: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder4_bowl_C
+    3300008: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder6_bowl_C
+    3300010: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pSphere2_bowl_C
+    4300000: bowl_C_pCylinder4
+    4300002: bowl_C_pSphere2
+    4300004: pCylinder6_bowl_C
+    4300006: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder4_bowl_C
+    4300008: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pCylinder6_bowl_C
+    4300010: Furniture_bowl_C_v1:bowl_C_Furniture_bowl_C_v1:pSphere2_bowl_C
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bowl_C_v1_bowl_C_Furniture_bowl_C_v1_pCylinder4_bowl_CMat
+    second: {fileID: 2100000, guid: 3cefe483c860a4560a62d34ed77bb973, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bowl_C_v1_bowl_C_Furniture_bowl_C_v1_pCylinder6_bowl_CMat
+    second: {fileID: 2100000, guid: a7be162101fd54e0bb1fdec37c2796c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Furniture_bowl_C_v1_bowl_C_Furniture_bowl_C_v1_pSphere2_bowl_CMat
+    second: {fileID: 2100000, guid: 3b65d65d9eb0245298852e826273999c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bowl_C_pCylinder4Mat
+    second: {fileID: 2100000, guid: 4f95a20b7600e4359a2d5273ae3a057a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bowl_C_pSphere2Mat
+    second: {fileID: 2100000, guid: 17b27d779c5eb474c863e00020b02864, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pCylinder6_bowl_CMat
+    second: {fileID: 2100000, guid: 045c2314748ae47cb957f68a1ae4e9a0, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
