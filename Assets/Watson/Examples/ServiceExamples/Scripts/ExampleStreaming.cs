@@ -170,9 +170,9 @@ public class ExampleStreaming : MonoBehaviour
             if (value && !_speechToText.IsListening)
             {
                 //_speechToText.CustomizationId = "d2097a62-9d08-47ce-aebb-bae11b7f27da";
-                _speechToText.CustomizationId = "fced2a14-8b50-4300-b914-189f3158038a";
+                _speechToText.CustomizationId = "6df1f2ff-4248-49c2-8d63-9dc413b88956";
                 _speechToText.CustomizationWeight = 1f;                
-                _speechToText.AcousticCustomizationId = "4508215a-48e2-4e1f-aa4b-670cdef446e0";
+//                _speechToText.AcousticCustomizationId = "4508215a-48e2-4e1f-aa4b-670cdef446e0";
                 _speechToText.DetectSilence = true;
                 _speechToText.EnableWordConfidence = true;
                 _speechToText.EnableTimestamps = true;
