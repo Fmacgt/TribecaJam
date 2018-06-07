@@ -36,6 +36,8 @@ public class TestSpeechRecognition : MonoBehaviour
     public string username = "90b1d881-5177-4e18-9210-a9ad56cf93dd";
     public string password = "eZmE7JX3VapA";
 
+    public string customModelId = "6df1f2ff-4248-49c2-8d63-9dc413b88956";
+
     public float spawnRadius = 5f;
 
     //==============================================================================
@@ -167,7 +169,7 @@ public class TestSpeechRecognition : MonoBehaviour
             if (value && !_speechToText.IsListening)
             {
                 //_speechToText.CustomizationId = "d2097a62-9d08-47ce-aebb-bae11b7f27da";
-                _speechToText.CustomizationId = "6df1f2ff-4248-49c2-8d63-9dc413b88956";
+                _speechToText.CustomizationId = customModelId;
                 _speechToText.CustomizationWeight = 1f;                
 //                _speechToText.AcousticCustomizationId = "4508215a-48e2-4e1f-aa4b-670cdef446e0";
                 _speechToText.DetectSilence = true;
@@ -388,6 +390,7 @@ public class TestSpeechRecognition : MonoBehaviour
 
         var obj = Instantiate(prefab);
         obj.transform.position = pt;
+        obj.transform.rotation = Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.up);
     }
 
     private void _lookForKeyword()
