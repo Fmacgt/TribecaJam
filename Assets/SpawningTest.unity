@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 1899126011}
   - component: {fileID: 1899126010}
   m_Layer: 0
-  m_Name: Regcognition
+  m_Name: Recognition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

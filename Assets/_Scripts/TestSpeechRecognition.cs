@@ -29,7 +29,7 @@ using System.Text;
 using TribecaJam;
 
 
-public class TestSpeechRegcognition : MonoBehaviour
+public class TestSpeechRecognition : MonoBehaviour
 {
     public TargetTextList targetTextList;
 
@@ -37,6 +37,17 @@ public class TestSpeechRegcognition : MonoBehaviour
     public string password = "eZmE7JX3VapA";
 
     public float spawnRadius = 5f;
+
+    //==============================================================================
+
+    private struct Candidate
+    {
+        public int wordCount;
+        public string[] words;
+        public GameObject prefab;
+    }
+
+    private List<Candidate> _candidates;
 
     //==============================================================================
 
@@ -71,10 +82,12 @@ public class TestSpeechRegcognition : MonoBehaviour
 
     private void Awake()
     {
+        _builder = new StringBuilder();
+
         _targetBuffer = new List<string>(16);
         _wordBuffer = new List<string>(32);
 
-        _builder = new StringBuilder();
+        _assembleCandidates(targetTextList.list);
     }
 
     void Start()
@@ -308,6 +321,29 @@ public class TestSpeechRegcognition : MonoBehaviour
 
     /////////////////////////////////////////////////////////////////////////////////////
 
+    private void _assembleCandidates(Mission[] missionList)
+    {
+        int candidateCount = missionList.Length;
+        _candidates = new List<Candidate>(candidateCount);
+        for (int i = 0; i < candidateCount; i++) {
+            var mission = targetTextList.list[i];
+
+            var candidate = new Candidate();
+            candidate.words = mission.text.Split(
+                    new string[] { " ", "-", "," },
+                    10, System.StringSplitOptions.RemoveEmptyEntries);
+            candidate.wordCount = candidate.words.Length;
+            candidate.prefab = mission.targetPrefab;
+
+            for (int wordIdx = 0; wordIdx < candidate.wordCount; wordIdx++) {
+                candidate.words[wordIdx] = candidate.words[wordIdx].ToLower();
+            }
+            _debugPrintBuffer("[INIT]", candidate.words);
+
+            _candidates.Add(candidate);
+        }
+    }
+
     private void _pickNewText()
     {
         /**
@@ -495,6 +531,20 @@ public class TestSpeechRegcognition : MonoBehaviour
         foreach (var word in buffer)
         {
             _builder.Append(word);
+            _builder.Append(", ");
+        }
+
+        Debug.Log(_builder.ToString());
+    }
+
+    private void _debugPrintBuffer(string leadIn, string[] buffer)
+    {
+        _builder.Length = 0;
+        _builder.Append(leadIn);
+        _builder.Append(" ");
+
+        for (int i = 0; i < buffer.Length; i++) {
+            _builder.Append(buffer[i]);
             _builder.Append(", ");
         }
 

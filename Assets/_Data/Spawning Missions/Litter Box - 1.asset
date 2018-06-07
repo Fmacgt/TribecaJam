@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be74cf8d8b8746ae8b895e79c79a87f, type: 3}
-  m_Name: Bed
+  m_Name: Litter Box - 1
   m_EditorClassIdentifier: 
-  text: Bed
+  text: Show me a litter box
   fastTime: 3
   badTime: 8
   animationTrigger: 
-  targetPrefab: {fileID: 1412793634778432, guid: 9de798fccc5874137be0d657def7138d,
+  targetPrefab: {fileID: 1945359639676140, guid: bdcb9ee01d0ed4ee8a4c6d72e0358386,
     type: 2}

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be74cf8d8b8746ae8b895e79c79a87f, type: 3}
-  m_Name: Pizza Box
+  m_Name: Bed - 1
   m_EditorClassIdentifier: 
-  text: Pizza
+  text: I want to sleep
   fastTime: 3
   badTime: 8
   animationTrigger: 
-  targetPrefab: {fileID: 1561809070977694, guid: 5610c697857c6498ebc0c1f182c17f9b,
+  targetPrefab: {fileID: 1412793634778432, guid: 9de798fccc5874137be0d657def7138d,
     type: 2}

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be74cf8d8b8746ae8b895e79c79a87f, type: 3}
-  m_Name: Cat
+  m_Name: Bed - 2
   m_EditorClassIdentifier: 
-  text: Well
+  text: Give me a bed
   fastTime: 3
   badTime: 8
   animationTrigger: 
-  targetPrefab: {fileID: 1354714701627360, guid: 2676e369020344267a566a7384ddcbdc,
+  targetPrefab: {fileID: 1412793634778432, guid: 9de798fccc5874137be0d657def7138d,
     type: 2}
