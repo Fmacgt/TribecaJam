@@ -48,6 +48,7 @@ public class TestSpeechRecognition : MonoBehaviour
     }
 
     private List<Candidate> _candidates;
+    private List<int> _recognizedIndices;
 
     //==============================================================================
 
@@ -301,8 +302,8 @@ public class TestSpeechRecognition : MonoBehaviour
                     _debugPrintBuffer(_wordBuffer);
 
 
-                    _lookForKeyword();
 //                    _tryToProcess();
+                    _tryProcessMultiple();
                 }
             }
         }
@@ -341,6 +342,11 @@ public class TestSpeechRecognition : MonoBehaviour
             _debugPrintBuffer("[INIT]", candidate.words);
 
             _candidates.Add(candidate);
+        }
+
+        _recognizedIndices = new List<int>(candidateCount);
+        for (int i = 0; i < candidateCount; i++) {
+            _recognizedIndices.Add(0);
         }
     }
 
@@ -469,6 +475,74 @@ public class TestSpeechRecognition : MonoBehaviour
             _wordBuffer.RemoveRange(0, Mathf.Min(startIdx, _wordBuffer.Count));
         }
         **/
+    }
+
+    private void _tryProcessMultiple()
+    {
+        if (_wordBuffer.Count == 0) {
+            return;
+        }
+
+        // iterate each candidate and try to match a longest consecutive string with 
+        // words in the word buffer
+        int maxRecognizedWordCount = 0;
+        int candidateCount = targetTextList.list.Length;
+        for (int candidateIdx = 0; candidateIdx < candidateCount; candidateIdx++) {
+            int recognizedWordCount = 0;
+
+            int recognizedIndex = _recognizedIndices[candidateIdx];
+            recognizedIndex = _processCandidate(candidateIdx, recognizedIndex, out recognizedWordCount);
+            _recognizedIndices[candidateIdx] = recognizedIndex;
+
+            if (recognizedWordCount > maxRecognizedWordCount) {
+                maxRecognizedWordCount = recognizedWordCount;
+            }
+        }
+
+        // remove words that are no longer used
+        _wordBuffer.RemoveRange(0, maxRecognizedWordCount);
+
+
+        for (int candidateIdx = 0; candidateIdx < candidateCount; candidateIdx++) {
+            int recognizedIndex = _recognizedIndices[candidateIdx];
+            if (recognizedIndex >= _candidates[candidateIdx].wordCount) {
+                // handle fully recognized candidates
+                _spawnItem(_candidates[candidateIdx].prefab);
+
+                _recognizedIndices[candidateIdx] = 0;
+            }
+        }
+    }
+
+    private int _processCandidate(int candidateIdx, int recognizedIdx, out int recognizedWordCount)
+    {
+        var targetBuffer = _candidates[candidateIdx].words;
+        int targetBufferLength = _candidates[candidateIdx].wordCount;
+        int wordBufferLength = _wordBuffer.Count;
+
+        int fromIdx = 0;
+        int toIdx = recognizedIdx;
+
+        // look for the next matching word in _targetBuffer
+        while (fromIdx < wordBufferLength &&
+                string.Compare(_wordBuffer[fromIdx], targetBuffer[toIdx]) != 0) {
+            fromIdx++;
+        }
+
+        if (fromIdx < wordBufferLength) {
+            // found the first matching character pair, start comparing remaining words
+            // for more
+            fromIdx++;
+            toIdx++;
+            while (fromIdx < wordBufferLength && toIdx < targetBufferLength &&
+                    string.Compare(_wordBuffer[fromIdx], targetBuffer[toIdx]) == 0) {
+                fromIdx++;
+                toIdx++;
+            }
+        }
+
+        recognizedWordCount = fromIdx;
+        return toIdx;
     }
 
     private void _highlightMatchedWords()
