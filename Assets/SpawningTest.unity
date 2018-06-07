@@ -187,13 +187,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 787656312}
-  m_LocalRotation: {x: 0.08057653, y: -0.8027919, z: 0.11149362, w: 0.58017385}
-  m_LocalPosition: {x: 12.38, y: 3.34, z: 4.72}
+  m_LocalRotation: {x: 0.060051657, y: -0.8062265, z: 0.083093174, w: 0.58265615}
+  m_LocalPosition: {x: 5.91, y: 1.41, z: 2.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.769001, y: -108.289, z: 0}
 --- !u!1 &1694480331
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   username: f402e406-fbbc-478f-8817-145458d42a2b
   password: OksAnRXvwOrg
   customModelId: 4c0bcb6c-aa91-41b8-9906-aac756d7928e
-  spawnRadius: 5
+  spawnRadius: 2
 --- !u!4 &1899126011
 Transform:
   m_ObjectHideFlags: 0
